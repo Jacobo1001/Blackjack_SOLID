@@ -1,0 +1,5 @@
+C:\Users\jacob\Desktop\BlackJack_solid\BlackJack_solid\obj\Debug\net8.0\BlackJack_solid.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jacob\Desktop\BlackJack_solid\BlackJack_solid\obj\Debug\net8.0\BlackJack_solid.AssemblyInfoInputs.cache
+C:\Users\jacob\Desktop\BlackJack_solid\BlackJack_solid\obj\Debug\net8.0\BlackJack_solid.AssemblyInfo.cs
+C:\Users\jacob\Desktop\BlackJack_solid\BlackJack_solid\obj\Debug\net8.0\BlackJack_solid.csproj.CoreCompileInputs.cache
+C:\Users\jacob\Desktop\BlackJack_solid\BlackJack_solid\obj\Debug\net8.0\BlackJack_solid.sourcelink.json

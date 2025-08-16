@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("BlackJack_solid")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Test_BlackJack")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ccec0d6b529a6c6a514410c2f480f12f669fe991")]
-[assembly: System.Reflection.AssemblyProductAttribute("BlackJack_solid")]
-[assembly: System.Reflection.AssemblyTitleAttribute("BlackJack_solid")]
+[assembly: System.Reflection.AssemblyProductAttribute("Test_BlackJack")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Test_BlackJack")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
