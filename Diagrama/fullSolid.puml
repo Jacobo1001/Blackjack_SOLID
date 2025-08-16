@@ -1,0 +1,182 @@
+@startuml
+
+package "Casino" {
+  package "Nucleo" {
+    interface IJugador {
+      + obtenerId(): int
+      + obtenerNombre(): String
+      + obtenerSaldo(): double
+      + actualizarSaldo(monto: double)
+    }
+
+    interface ICroupier {
+      + iniciarRonda()
+      + finalizarRonda()
+      + repartirElementos()
+      + validarJugada(jugada: String): boolean
+    }
+
+    interface IMesa {
+      + obtenerId(): int
+      + obtenerEstado(): String
+      + asignarCroupier(croupier: ICroupier)
+      + obtenerCroupier(): ICroupier
+      + obtenerReglas(): IReglasJuego
+    }
+
+    interface IServicioMesa {
+      + abrirMesa(reglas: IReglasJuego)
+      + cerrarMesa()
+    }
+
+    interface IServicioApuestas {
+      + registrarApuesta(apuesta: IApuesta): boolean
+      + validarApuesta(apuesta: IApuesta): boolean
+      + calcularGanancias(): Map<IJugador, double>
+      + obtenerApuestasActivas(): List<IApuesta>
+    }
+
+    interface IApuesta {
+      + obtenerJugador(): IJugador
+      + obtenerMonto(): double
+      + obtenerMesa(): IMesa
+      + obtenerJuego(): String
+      + obtenerFecha(): DateTime
+      + obtenerTipo(): String
+      + esValida(): boolean
+    }
+
+    interface IReglasJuego {
+      + obtenerNombre(): String
+      + validarJugada(jugada: String): boolean
+      + validarApuesta(apuesta: IApuesta): boolean
+    }
+
+    class Jugador implements IJugador {
+      - id: int
+      - nombre: String
+      - saldo: double
+    }
+
+    class Croupier implements ICroupier {
+      - id: int
+      - nombre: String
+      - mesaActual: IMesa
+    }
+
+    class Mesa implements IMesa {
+      - id: int
+      - estado: String
+      - croupier: ICroupier
+      - reglas: IReglasJuego
+      - rondaActual: Ronda
+    }
+
+    class Ronda {
+      - numero: int
+      - estado: String
+      - fechaInicio: DateTime
+      - fechaFin: DateTime
+      + iniciar()
+      + finalizar()
+      + cambiarEstado(nuevo: String)
+    }
+
+    class Apuesta implements IApuesta {
+      - jugador: IJugador
+      - monto: double
+      - mesa: IMesa
+      - juego: String
+      - fecha: DateTime
+      - tipo: String
+    }
+  }
+
+  package "Juegos" {
+    package "Blackjack" {
+      interface ICroupierBlackjack extends ICroupier {
+        + repartirCartasIniciales()
+        + tomarDecisionCasa(): String
+        + verificarBlackjack(): boolean
+      }
+
+      interface IServicioBaraja {
+        + barajar()
+        + sacarCarta(): Carta
+        + reiniciarMazo()
+      }
+
+      interface IServicioBlackjack {
+        + ofrecerOpciones(jugador: IJugador): List<String>
+        + procesarDecision(jugador: IJugador, decision: String)
+        + determinarGanador(): IJugador
+      }
+
+      class CroupierBlackjack implements ICroupierBlackjack {
+        - mano: Mano
+        + debePedirCarta(): boolean
+      }
+
+      class Mano {
+        - cartas: List<Carta>
+        + calcularValor(): int
+      }
+
+      class Carta {
+        - valor: String
+        - palo: String
+      }
+
+      class ReglasBlackjack {
+        - apuestaMinima: double
+        - apuestaMaxima: double
+        - numMazos: int
+        - pagoBlackjack: double
+        + debeDividir(mano: Mano): boolean
+      }
+
+      class ServicioBlackjack implements IServicioBlackjack {
+        - mesa: IMesa
+        - servicioApuestas: IServicioApuestas
+        - servicioBaraja: IServicioBaraja
+        - reglas: IReglasJuego
+        + determinarGanador(): IJugador
+      }
+    }
+  }
+}
+
+' ===== Relaciones Núcleo (asociaciones/dependencias) =====
+Mesa --> ICroupier : usa
+Mesa --> IReglasJuego : consulta
+Mesa --> Ronda : gestiona estado actual
+IServicioMesa --> Mesa : administra
+IServicioApuestas --> IApuesta
+IServicioApuestas --> IReglasJuego : valida según reglas
+Jugador --> Apuesta : realiza
+Apuesta --> Mesa : asociada a
+IApuesta --> IJugador
+IApuesta --> IMesa
+
+' ===== Relaciones Blackjack (asociaciones) =====
+ICroupierBlackjack --|> ICroupier
+CroupierBlackjack --> Mano : opera sobre
+ServicioBlackjack --> ICroupierBlackjack : coordina
+ServicioBlackjack --> IServicioBaraja : usa
+ServicioBlackjack --> IReglasJuego : aplica
+ServicioBlackjack --> IServicioApuestas : registra/paga
+Mano --> Carta : incluye
+ReglasBlackjack ..> Mano : evalúa (dependencia)
+
+' ===== Notas =====
+note right of ICroupier
+«Delegado»
+validarJugada debe consultar IReglasJuego
+end note
+
+note right of Mesa
+Para máximo desacoplamiento, considera guardar IDs
+y resolver instancias con fábricas/IoC.
+end note
+
+@enduml

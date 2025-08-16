@@ -1,0 +1,224 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\blackjack\\servicios\\serviciomesa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\blackjack\\servicios\\serviciomesa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\blackjack\\servicios\\servicioapuestas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\blackjack\\servicios\\servicioapuestas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\blackjack\\reglas\\reglasblackjack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\blackjack\\reglas\\reglasblackjack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\nucleo\\entidades\\apuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\nucleo\\entidades\\apuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\nucleo\\entidades\\jugador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\nucleo\\entidades\\jugador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\nucleo\\interfaces\\imesa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\nucleo\\interfaces\\imesa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\nucleo\\interfaces\\iserviciomesa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\nucleo\\interfaces\\iserviciomesa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\nucleo\\interfaces\\iapuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\nucleo\\interfaces\\iapuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\nucleo\\interfaces\\iservicioapuestas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\nucleo\\interfaces\\iservicioapuestas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\nucleo\\interfaces\\ireglasjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\nucleo\\interfaces\\ireglasjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\nucleo\\interfaces\\icroupier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\nucleo\\interfaces\\icroupier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|c:\\users\\jacob\\source\\repos\\blackjack_solid\\blackjack_solid\\nucleo\\interfaces\\ijugador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D25A60C-F926-40D7-971B-061C62F64F16}|BlackJack_solid\\BlackJack_solid.csproj|solutionrelative:blackjack_solid\\nucleo\\interfaces\\ijugador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ServicioMesa.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Blackjack\\Servicios\\ServicioMesa.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Blackjack\\Servicios\\ServicioMesa.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Blackjack\\Servicios\\ServicioMesa.cs",
+              "RelativeToolTip": "BlackJack_solid\\Blackjack\\Servicios\\ServicioMesa.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAA4wCoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:07:27.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServicioApuestas.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Blackjack\\Servicios\\ServicioApuestas.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Blackjack\\Servicios\\ServicioApuestas.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Blackjack\\Servicios\\ServicioApuestas.cs",
+              "RelativeToolTip": "BlackJack_solid\\Blackjack\\Servicios\\ServicioApuestas.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwC8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:06:47.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReglasBlackjack.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Blackjack\\Reglas\\ReglasBlackjack.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Blackjack\\Reglas\\ReglasBlackjack.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Blackjack\\Reglas\\ReglasBlackjack.cs",
+              "RelativeToolTip": "BlackJack_solid\\Blackjack\\Reglas\\ReglasBlackjack.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:06:14.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Apuesta.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Entidades\\Apuesta.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Entidades\\Apuesta.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Entidades\\Apuesta.cs",
+              "RelativeToolTip": "BlackJack_solid\\Nucleo\\Entidades\\Apuesta.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAIwBoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:04:35.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Jugador.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Entidades\\Jugador.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Entidades\\Jugador.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Entidades\\Jugador.cs",
+              "RelativeToolTip": "BlackJack_solid\\Nucleo\\Entidades\\Jugador.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:04:03.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IReglasJuego.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IReglasJuego.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Interfaces\\IReglasJuego.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IReglasJuego.cs",
+              "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IReglasJuego.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:02:22.921Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IServicioApuestas.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IServicioApuestas.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Interfaces\\IServicioApuestas.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IServicioApuestas.cs",
+              "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IServicioApuestas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:01:43.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IApuesta.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IApuesta.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Interfaces\\IApuesta.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IApuesta.cs",
+              "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IApuesta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:01:13.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IServicioMesa.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IServicioMesa.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Interfaces\\IServicioMesa.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IServicioMesa.cs",
+              "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IServicioMesa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T14:00:17.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IMesa.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IMesa.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Interfaces\\IMesa.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IMesa.cs",
+              "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IMesa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T13:56:19.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ICroupier.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\ICroupier.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Interfaces\\ICroupier.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\ICroupier.cs",
+              "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\ICroupier.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T13:55:47.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IJugador.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IJugador.cs",
+              "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Interfaces\\IJugador.cs",
+              "ToolTip": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Interfaces\\IJugador.cs",
+              "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IJugador.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T13:54:51.967Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
