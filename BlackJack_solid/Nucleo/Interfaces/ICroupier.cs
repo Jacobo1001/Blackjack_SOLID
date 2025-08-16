@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack_solid.Nucleo.Interfaces
 {
-    public interface ICroupier
+    public interface IDealer
     {
         void IniciarRonda();
         void FinalizarRonda();

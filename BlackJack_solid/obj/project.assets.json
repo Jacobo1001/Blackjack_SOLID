@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\BlackJack_solid.csproj",
+      "projectUniqueName": "C:\\Users\\jacob\\Desktop\\BlackJack_solid\\BlackJack_solid\\BlackJack_solid.csproj",
       "projectName": "BlackJack_solid",
-      "projectPath": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\BlackJack_solid.csproj",
+      "projectPath": "C:\\Users\\jacob\\Desktop\\BlackJack_solid\\BlackJack_solid\\BlackJack_solid.csproj",
       "packagesPath": "C:\\Users\\jacob\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jacob\\source\\repos\\BlackJack_solid\\BlackJack_solid\\obj\\",
+      "outputPath": "C:\\Users\\jacob\\Desktop\\BlackJack_solid\\BlackJack_solid\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

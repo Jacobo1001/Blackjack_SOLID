@@ -13,7 +13,7 @@ namespace BlackJack_solid.Blackjack.Servicios
         {
             private readonly int _id;
             private string _estado = "CERRADA";
-            private ICroupier? _croupier;
+            private IDealer? _Dealer;
             private readonly IReglasJuego _reglas;
 
             public MesaSimple(int id, IReglasJuego reglas)
@@ -21,8 +21,8 @@ namespace BlackJack_solid.Blackjack.Servicios
 
             public int ObtenerId() => _id;
             public string ObtenerEstado() => _estado;
-            public void AsignarCroupier(ICroupier c) => _croupier = c;
-            public ICroupier ObtenerCroupier() => _croupier!;
+            public void AsignarDealer(IDealer c) => _Dealer = c;
+            public IDealer ObtenerDealer() => _Dealer!;
             public IReglasJuego ObtenerReglas() => _reglas;
 
             public void Abrir() => _estado = "ABIERTA";

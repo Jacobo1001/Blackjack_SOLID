@@ -9,7 +9,7 @@ package "Casino" {
       + actualizarSaldo(monto: double)
     }
 
-    interface ICroupier {
+    interface IDealer {
       + iniciarRonda()
       + finalizarRonda()
       + repartirElementos()
@@ -19,8 +19,8 @@ package "Casino" {
     interface IMesa {
       + obtenerId(): int
       + obtenerEstado(): String
-      + asignarCroupier(croupier: ICroupier)
-      + obtenerCroupier(): ICroupier
+      + asignarDealer(Dealer: IDealer)
+      + obtenerDealer(): IDealer
       + obtenerReglas(): IReglasJuego
     }
 
@@ -58,7 +58,7 @@ package "Casino" {
       - saldo: double
     }
 
-    class Croupier implements ICroupier {
+    class Dealer implements IDealer {
       - id: int
       - nombre: String
       - mesaActual: IMesa
@@ -67,7 +67,7 @@ package "Casino" {
     class Mesa implements IMesa {
       - id: int
       - estado: String
-      - croupier: ICroupier
+      - Dealer: IDealer
       - reglas: IReglasJuego
       - rondaActual: Ronda
     }
@@ -94,7 +94,7 @@ package "Casino" {
 
   package "Juegos" {
     package "Blackjack" {
-      interface ICroupierBlackjack extends ICroupier {
+      interface IDealerBlackjack extends IDealer {
         + repartirCartasIniciales()
         + tomarDecisionCasa(): String
         + verificarBlackjack(): boolean
@@ -112,7 +112,7 @@ package "Casino" {
         + determinarGanador(): IJugador
       }
 
-      class CroupierBlackjack implements ICroupierBlackjack {
+      class DealerBlackjack implements IDealerBlackjack {
         - mano: Mano
         + debePedirCarta(): boolean
       }
@@ -147,7 +147,7 @@ package "Casino" {
 }
 
 ' ===== Relaciones Núcleo (asociaciones/dependencias) =====
-Mesa --> ICroupier : usa
+Mesa --> IDealer : usa
 Mesa --> IReglasJuego : consulta
 Mesa --> Ronda : gestiona estado actual
 IServicioMesa --> Mesa : administra
@@ -159,9 +159,9 @@ IApuesta --> IJugador
 IApuesta --> IMesa
 
 ' ===== Relaciones Blackjack (asociaciones) =====
-ICroupierBlackjack --|> ICroupier
-CroupierBlackjack --> Mano : opera sobre
-ServicioBlackjack --> ICroupierBlackjack : coordina
+IDealerBlackjack --|> IDealer
+DealerBlackjack --> Mano : opera sobre
+ServicioBlackjack --> IDealerBlackjack : coordina
 ServicioBlackjack --> IServicioBaraja : usa
 ServicioBlackjack --> IReglasJuego : aplica
 ServicioBlackjack --> IServicioApuestas : registra/paga
@@ -169,7 +169,7 @@ Mano --> Carta : incluye
 ReglasBlackjack ..> Mano : evalúa (dependencia)
 
 ' ===== Notas =====
-note right of ICroupier
+note right of IDealer
 «Delegado»
 validarJugada debe consultar IReglasJuego
 end note
