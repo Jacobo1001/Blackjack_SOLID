@@ -41,65 +41,47 @@ namespace BlackJack_solid.Blackjack.Servicios
             mano.Agregar(Robar());
         }
 
-        public void JugarDealerHasta17()
-        {
-            ValidarRondaActiva();
-            while (CalcularPuntos(_manoDealer) < 17 || Es17Suave(_manoDealer))
-            {
-                _manoDealer.Agregar(Robar());
-            }
-        }
-
+        // Función pura para calcular puntos de una mano
         public int CalcularPuntos(Mano mano)
         {
-            int total = 0;
-            int ases = 0;
+            // Uso de LINQ para calcular el total de puntos y contar ases
+            int total = mano.Cartas.Sum(c => _reglas.ValorCarta(c.Cara.ToString()));
+            int ases = mano.Cartas.Count(c => c.Cara == Cara.A);
 
-            foreach (var c in mano.Cartas)
-            {
-                var cara = c.Cara switch
-                {
-                    Cara.A => "A",
-                    Cara.J => "J",
-                    Cara.Q => "Q",
-                    Cara.K => "K",
-                    _ => ((int)c.Cara).ToString().Replace("C", "") 
-                };
-                int valor = _reglas.ValorCarta(cara);
-                total += valor;
-                if (c.Cara == Cara.A) ases++;
-            }
-
+            // Ajustar el valor de los ases si el total excede el máximo permitido
             while (total > _reglas.MaximoPuntos && ases > 0)
             {
-                total -= 10; 
+                total -= 10;
                 ases--;
             }
 
             return total;
         }
+        //  Este bloque es funcional porque utiliza LINQ para calcular el total de puntos y no modifica el estado interno de la clase. Es una función pura que siempre devuelve el mismo resultado para los mismos argumentos.
 
+        // Función pura para evaluar resultados de los jugadores
         public IReadOnlyDictionary<IJugador, string> EvaluarResultados()
         {
-            var resultados = new Dictionary<IJugador, string>();
             var puntosDealer = CalcularPuntos(_manoDealer);
             bool dealerSePasa = puntosDealer > _reglas.MaximoPuntos;
 
-            foreach (var (jug, mano) in _manosJugadores)
-            {
-                var puntos = CalcularPuntos(mano);
-                bool jugadorSePasa = puntos > _reglas.MaximoPuntos;
+            // Uso de LINQ para evaluar los resultados de cada jugador
+            return _manosJugadores.ToDictionary(
+                kvp => kvp.Key,
+                kvp =>
+                {
+                    var puntosJugador = CalcularPuntos(kvp.Value);
+                    bool jugadorSePasa = puntosJugador > _reglas.MaximoPuntos;
 
-                string res = jugadorSePasa ? "Pierde (se pasa)"
-                           : dealerSePasa ? "Gana (dealer se pasa)"
-                           : puntos > puntosDealer ? "Gana"
-                           : puntos < puntosDealer ? "Pierde"
-                           : "Empate";
-                resultados[jug] = res;
-            }
-
-            return resultados;
+                    return jugadorSePasa ? "Pierde (se pasa)"
+                         : dealerSePasa ? "Gana (dealer se pasa)"
+                         : puntosJugador > puntosDealer ? "Gana"
+                         : puntosJugador < puntosDealer ? "Pierde"
+                         : "Empate";
+                }
+            );
         }
+        //  Este bloque es funcional porque utiliza `ToDictionary` para transformar los datos sin modificar el estado interno. Es declarativo y fácil de entender.
 
         public void IniciarRonda()
         {
@@ -133,70 +115,75 @@ namespace BlackJack_solid.Blackjack.Servicios
             _rondaActiva = false;
         }
 
-        public bool ValidarJugada(string jugada)
-        {
-            return jugada is "PedirCarta" or "Plantarse";
-        }
-
+        // Función pura para validar una jugada
+        public bool ValidarJugada(string jugada) =>
+            jugada is "PedirCarta" or "Plantarse";
+        //  Este bloque es funcional porque utiliza un patrón declarativo para validar la jugada. Es una función pura que no tiene efectos secundarios.
 
         private void ValidarRondaActiva()
         {
             if (!_rondaActiva) throw new InvalidOperationException("No hay una ronda activa. Llama a IniciarRonda() primero.");
         }
 
+        // Función para crear un mazo barajado
         private Stack<Carta> CrearMazoBarajado()
         {
-            var cartas = new List<Carta>(52);
-            foreach (Palo p in Enum.GetValues(typeof(Palo)))
-            {
-                cartas.Add(new Carta(p, Cara.A));
-                for (int n = 2; n <= 10; n++) cartas.Add(new Carta(p, (Cara)Enum.Parse(typeof(Cara), $"C{n}")));
-                cartas.Add(new Carta(p, Cara.J));
-                cartas.Add(new Carta(p, Cara.Q));
-                cartas.Add(new Carta(p, Cara.K));
-            }
+            var cartas = Enum.GetValues(typeof(Palo))
+                .Cast<Palo>()
+                .SelectMany(p => new[]
+                {
+                    new Carta(p, Cara.A),
+                    new Carta(p, Cara.J),
+                    new Carta(p, Cara.Q),
+                    new Carta(p, Cara.K)
+                }.Concat(Enumerable.Range(2, 9).Select(n => new Carta(p, (Cara)Enum.Parse(typeof(Cara), $"C{n}")))))
+                .ToList();
 
-            for (int i = cartas.Count - 1; i > 0; i--)
-            {
-                int j = _rng.Next(i + 1);
-                (cartas[i], cartas[j]) = (cartas[j], cartas[i]);
-            }
-
-            return new Stack<Carta>(cartas);
+            // Uso de LINQ para barajar las cartas
+            var barajadas = cartas.OrderBy(_ => _rng.Next()).ToList();
+            return new Stack<Carta>(barajadas);
         }
+        //  Este bloque es funcional porque utiliza LINQ para generar y barajar las cartas de manera declarativa. No modifica el estado interno y devuelve un nuevo objeto.
 
         private Carta Robar()
         {
             if (_mazo.Count == 0)
-                _mazo = CrearMazoBarajado(); 
+                _mazo = CrearMazoBarajado();
 
             return _mazo.Pop();
         }
 
+        // Función pura para verificar si el dealer tiene un 17 suave
         private bool Es17Suave(Mano mano)
         {
-            int total = 0; int ases = 0;
-            foreach (var c in mano.Cartas)
+            int total = mano.Cartas.Sum(c => _reglas.ValorCarta(c.Cara.ToString()));
+            int ases = mano.Cartas.Count(c => c.Cara == Cara.A);
+
+            // Uso de un operador ternario para simplificar la lógica
+            return ases > 0 && total == 17;
+        }
+        //  Este bloque es funcional porque utiliza LINQ para calcular el total y los ases, y no modifica el estado interno. Es una función pura que devuelve un resultado basado únicamente en los argumentos.
+
+        // Función para jugar hasta que el dealer alcance 17 puntos
+        public void JugarDealerHasta17()
+        {
+            ValidarRondaActiva();
+            while (CalcularPuntos(_manoDealer) < 17 || Es17Suave(_manoDealer))
             {
-                var cara = c.Cara switch
-                {
-                    Cara.A => "A",
-                    Cara.J => "J",
-                    Cara.Q => "Q",
-                    Cara.K => "K",
-                    _ => ((int)c.Cara).ToString().Replace("C", "")
-                };
-                int valor = _reglas.ValorCarta(cara);
-                total += valor;
-                if (c.Cara == Cara.A) ases++;
+                _manoDealer.Agregar(Robar());
             }
-            while (ases > 0)
+        }
+
+        public void RepartirElementos()
+        {
+            ValidarRondaActiva();
+
+            for (int i = 0; i < 2; i++)
             {
-                if (total == 17) return true;
-                total -= 10;
-                ases--;
+                foreach (var j in _manosJugadores.Keys)
+                    _manosJugadores[j].Agregar(Robar());
+                _manoDealer.Agregar(Robar());
             }
-            return false;
         }
     }
 }
