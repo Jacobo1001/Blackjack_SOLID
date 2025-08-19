@@ -11,6 +11,6 @@ namespace BlackJack_solid.Nucleo.Interfaces
         int ObtenerId();
         string ObtenerNombre();
         double ObtenerSaldo();
-        void ActualizarSaldo(double monto);
+        IJugador ActualizarSaldo(double monto);
     }
 }

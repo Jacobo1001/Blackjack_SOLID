@@ -9,6 +9,7 @@ namespace BlackJack_solid.Nucleo.Interfaces
     public interface IServicioMesa
     {
         IMesa AbrirMesa(IReglasJuego reglas);
-        void CerrarMesa(IMesa mesa);
+        IMesa MesaCerrada(IMesa mesa);
+        IMesa RondaFinalizada(IMesa mesa);
     }
 }
