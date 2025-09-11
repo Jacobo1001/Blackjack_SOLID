@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jacob\\Desktop\\BlackJack_solid\\Test_BlackJack\\Test_BlackJack\\Test_BlackJack.csproj": {}
+    "C:\\Users\\Usuario\\Desktop\\Blackjack_SOLID\\Test_BlackJack\\Test_BlackJack\\Test_BlackJack.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jacob\\Desktop\\BlackJack_solid\\Test_BlackJack\\Test_BlackJack\\Test_BlackJack.csproj": {
+    "C:\\Users\\Usuario\\Desktop\\Blackjack_SOLID\\Test_BlackJack\\Test_BlackJack\\Test_BlackJack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jacob\\Desktop\\BlackJack_solid\\Test_BlackJack\\Test_BlackJack\\Test_BlackJack.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Blackjack_SOLID\\Test_BlackJack\\Test_BlackJack\\Test_BlackJack.csproj",
         "projectName": "Test_BlackJack",
-        "projectPath": "C:\\Users\\jacob\\Desktop\\BlackJack_solid\\Test_BlackJack\\Test_BlackJack\\Test_BlackJack.csproj",
-        "packagesPath": "C:\\Users\\jacob\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jacob\\Desktop\\BlackJack_solid\\Test_BlackJack\\Test_BlackJack\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Desktop\\Blackjack_SOLID\\Test_BlackJack\\Test_BlackJack\\Test_BlackJack.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Desktop\\Blackjack_SOLID\\Test_BlackJack\\Test_BlackJack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jacob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

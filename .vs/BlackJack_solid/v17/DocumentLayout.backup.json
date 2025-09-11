@@ -106,8 +106,7 @@
               "RelativeToolTip": "BlackJack_solid\\Nucleo\\Entidades\\ServicioBlackjack.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T19:24:09.189Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T19:24:09.189Z"
             },
             {
               "$type": "Document",
@@ -119,8 +118,7 @@
               "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IServicioBlackjack.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T19:23:40.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T19:23:40.747Z"
             },
             {
               "$type": "Document",
@@ -132,8 +130,7 @@
               "RelativeToolTip": "BlackJack_solid\\Nucleo\\Entidades\\Dealer.cs",
               "ViewState": "AgIAALsAAAAAAAAAAAAAAMoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T19:21:10.37Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T19:21:10.37Z"
             },
             {
               "$type": "Document",
@@ -145,8 +142,7 @@
               "RelativeToolTip": "BlackJack_solid\\Nucleo\\Entidades\\Mano.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAxwAoAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T19:10:28.411Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T19:10:28.411Z"
             },
             {
               "$type": "Document",
@@ -156,7 +152,7 @@
               "RelativeDocumentMoniker": "BlackJack_solid\\Nucleo\\Entidades\\Mesa.cs",
               "ToolTip": "C:\\Users\\jacob\\Desktop\\BlackJack_solid\\BlackJack_solid\\Nucleo\\Entidades\\Mesa.cs",
               "RelativeToolTip": "BlackJack_solid\\Nucleo\\Entidades\\Mesa.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAwwCAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-16T19:11:48.326Z",
               "EditorCaption": ""
@@ -183,8 +179,7 @@
               "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IMesa.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T13:56:19.829Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T13:56:19.829Z"
             },
             {
               "$type": "Document",
@@ -196,8 +191,7 @@
               "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IDealer.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAA1wA0AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T13:55:47.368Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T13:55:47.368Z"
             },
             {
               "$type": "Document",
@@ -209,8 +203,7 @@
               "RelativeToolTip": "BlackJack_solid\\Nucleo\\Interfaces\\IReglasJuego.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-16T14:02:22.921Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-16T14:02:22.921Z"
             },
             {
               "$type": "Document",
