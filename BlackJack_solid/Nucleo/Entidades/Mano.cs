@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack_solid.Nucleo.Entidades
 {
-    public sealed class Mano
+    public class Mano
     {
         private readonly List<Carta> _cartas = new();
         public IReadOnlyList<Carta> Cartas => _cartas;

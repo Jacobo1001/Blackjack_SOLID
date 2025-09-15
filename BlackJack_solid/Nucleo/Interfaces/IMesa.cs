@@ -10,7 +10,7 @@ namespace BlackJack_solid.Nucleo.Interfaces
     {
         int ObtenerId();
         string ObtenerEstado();
-        IMesa AsignarDealer(IDealer Dealer);
+        void AsignarDealer(IDealer Dealer);
         IDealer ObtenerDealer();
         IReglasJuego ObtenerReglas();
     }

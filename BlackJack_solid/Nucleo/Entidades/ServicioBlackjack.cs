@@ -11,20 +11,18 @@ namespace BlackJack_solid.Nucleo.Entidades
         public Croupier(IReglasJuego reglas) => _reglas = reglas ?? throw new ArgumentNullException(nameof(reglas));
 
         // Función pura para iniciar una nueva ronda (devuelve una nueva instancia de Ronda)
-        public Ronda IniciarRonda(int numero)
+        public void IniciarRonda()
         {
-            _rondaActual = new Ronda(numero);
-            return _rondaActual;
+            _rondaActual = new Ronda(1);
         }
         //  Este bloque es funcional porque devuelve una nueva instancia de `Ronda` en lugar de modificar directamente el estado interno.
 
         // Función pura para finalizar la ronda actual (devuelve una nueva instancia de Ronda con la fecha de finalización actualizada)
-        public Ronda? FinalizarRonda()
+        public void FinalizarRonda()
         {
             if (_rondaActual == null)
                 throw new InvalidOperationException("No hay una ronda activa para finalizar.");
             _rondaActual = _rondaActual.Finalizar();
-            return _rondaActual;
         }
         //  Este bloque es funcional porque utiliza el método `Finalizar` de `Ronda`, que devuelve una nueva instancia, manteniendo la inmutabilidad.
 
