@@ -17,11 +17,11 @@ namespace BlackJack_solid
             var factory = new GameFactory();
             _gameController = factory.CrearGameController();
             
-            InicializarJuego();
             
             bool continuarJugando = true;
             while (continuarJugando && _gameController.PuedeJugar())
             {
+                InicializarJuego();
                 MostrarMenu();
                 
                 string opcion = Console.ReadLine() ?? "";
@@ -67,7 +67,7 @@ namespace BlackJack_solid
         {
             try
             {
-                _gameController.JugarMano();
+                _gameController = _gameController.JugarMano();
             }
             catch (InvalidOperationException ex)
             {
