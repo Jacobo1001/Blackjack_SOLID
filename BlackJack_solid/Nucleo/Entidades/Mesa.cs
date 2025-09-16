@@ -14,9 +14,9 @@ namespace BlackJack_solid.Nucleo.Entidades
         Finalizada
     }
 
-    public sealed class Mesa : IMesa
+    public class Mesa : IMesa
     {
-        private Dealer? _dealer;
+        private IDealer? _dealer;
         private readonly List<Jugador> _jugadores = new List<Jugador>();
         private readonly List<Apuesta> _apuestas = new List<Apuesta>();
         private Ronda? _rondaActual;
@@ -35,7 +35,7 @@ namespace BlackJack_solid.Nucleo.Entidades
         public int ObtenerId() => Id;
 
         // Función pura para obtener el estado de la mesa
-        public EstadoMesa ObtenerEstado() => Estado;
+        public string ObtenerEstado() => Estado.ToString();
 
         // Función pura para mostrar el estado de la mesa
         public string ObtenerEstadoMesa()
@@ -55,28 +55,18 @@ namespace BlackJack_solid.Nucleo.Entidades
             _jugadores.Where(j => j.ObtenerSaldo() > 0).ToList();
         //  Este bloque es funcional porque utiliza `LINQ` para filtrar jugadores y devuelve una nueva lista sin modificar el estado interno.
 
-        // Función pura para validar un movimiento
-        public bool ValidarMovimiento(Jugador jugador, Movimiento movimiento) =>
-            Reglas.ValidarMovimiento(jugador, movimiento);
-        // Este bloque es funcional porque delega la validación a las reglas del juego y no modifica el estado interno.
+        // Validación de movimiento eliminada (tipos no existentes en interfaz)
 
-        // Función pura para calcular resultados de la ronda
-        public ResultadoRonda CalcularResultados()
-        {
-            if (_rondaActual == null)
-                throw new InvalidOperationException("No hay una ronda activa para calcular resultados.");
-            return Reglas.CalcularResultados(_rondaActual);
-        }
-        // Este bloque es funcional porque utiliza las reglas del juego para calcular resultados sin modificar el estado interno.
+        // Cálculo de resultados eliminado (tipos no existentes)
 
-        public void AsignarDealer(Dealer dealer)
+        public void AsignarDealer(IDealer dealer)
         {
             if (Estado != EstadoMesa.Abierta)
                 throw new InvalidOperationException("La mesa debe estar abierta para asignar un dealer.");
             _dealer = dealer;
         }
 
-        public Dealer ObtenerDealer()
+        public IDealer ObtenerDealer()
         {
             if (_dealer == null)
                 throw new InvalidOperationException("No se ha asignado un dealer a la mesa.");
@@ -121,11 +111,6 @@ namespace BlackJack_solid.Nucleo.Entidades
             Estado = EstadoMesa.Cerrada;
         }
 
-        // Función pura para mostrar el estado de la mesa (usando LINQ y declaratividad)
-        public void MostrarEstadoMesa()
-        {
-            Console.WriteLine(ObtenerEstadoMesa());
-        }
-        //  Este bloque utiliza la función pura `ObtenerEstadoMesa` para mostrar el estado de la mesa, manteniendo la lógica declarativa y funcional.
+        public IReglasJuego ObtenerReglas() => Reglas;
     }
 }

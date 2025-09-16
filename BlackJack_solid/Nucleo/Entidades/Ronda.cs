@@ -29,11 +29,11 @@ namespace BlackJack_solid.Nucleo.Entidades
         // Método para finalizar la ronda (devuelve una nueva instancia con la fecha de finalización actualizada)
         public Ronda Finalizar()
         {
-            return new Ronda(Numero)
-            {
-                Fin = DateTime.UtcNow
-            };
+            var r = new Ronda(Numero);
+            r.Fin = DateTime.UtcNow;
+            return r;
         }
+        // 
         //  Este bloque es funcional porque devuelve una nueva instancia de `Ronda` con la fecha de finalización actualizada, en lugar de modificar el estado interno.
     }
 }

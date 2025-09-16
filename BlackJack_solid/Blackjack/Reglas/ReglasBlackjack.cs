@@ -9,28 +9,33 @@ namespace BlackJack_solid.Blackjack.Reglas
     {
         public string NombreReglas => "Reglas Blackjack estándar";
         public int MaximoPuntos => 21;
-        //ValidarApuesta y ValorCarta ahora son funciones puras representadas como expresiones lambda (Func<T, TResult>). Esto hace que sean más declarativas y reutilizables.
-        // Función pura para validar una apuesta
-        public Func<double, bool> ValidarApuesta => monto => monto > 0;
+        public bool ValidarApuesta(double monto) => monto > 0;
 
         //CalcularPuntos: Calcula el total de puntos de una mano de cartas sin modificar el estado interno.
         //EsManoValida: Determina si una mano es válida basándose en los puntos calculados.
-        // Función pura para calcular el valor de una carta
-        public Func<string, int> ValorCarta => cara => cara switch
+        public int ValorCarta(string cara) => cara switch
         {
             "A" => 11,
             "K" or "Q" or "J" => 10,
-            _ => int.TryParse(cara, out var v) ? v : 0
+            "C2" => 2,
+            "C3" => 3,
+            "C4" => 4,
+            "C5" => 5,
+            "C6" => 6,
+            "C7" => 7,
+            "C8" => 8,
+            "C9" => 9,
+            "C10" => 10,
+            _ => 0
         };
 
         //Se utiliza LINQ (Sum, Count) para calcular el total de puntos y contar ases en una mano de cartas.
         // Función pura para calcular el total de puntos de una mano
-        public Func<IEnumerable<string>, int> CalcularPuntos => cartas =>
+        public int CalcularPuntos(IEnumerable<string> cartas)
         {
             var total = cartas.Sum(carta => ValorCarta(carta));
             var ases = cartas.Count(carta => carta == "A");
 
-            // Ajustar el valor de los ases si el total excede el máximo permitido
             while (total > MaximoPuntos && ases > 0)
             {
                 total -= 10;
@@ -38,13 +43,13 @@ namespace BlackJack_solid.Blackjack.Reglas
             }
 
             return total;
-        };
+        }
         //Se utiliza LINQ (Sum, Count) para calcular el total de puntos y contar ases en una mano de cartas.
         // Función pura para determinar si una mano es válida
-        public Func<IEnumerable<string>, bool> EsManoValida => cartas =>
+        public bool EsManoValida(IEnumerable<string> cartas)
         {
             var puntos = CalcularPuntos(cartas);
             return puntos <= MaximoPuntos;
-        };
+        }
     }
 }

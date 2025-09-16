@@ -8,5 +8,5 @@ using BlackJack_solid.Compartido;
 
 namespace BlackJack_solid.Nucleo.Entidades
 {
-    public sealed record Carta(Palo Palo, Cara Cara);
+    public record Carta(Palo Palo, Cara Cara);
 }

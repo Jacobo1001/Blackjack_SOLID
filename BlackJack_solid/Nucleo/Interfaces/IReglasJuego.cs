@@ -10,7 +10,9 @@ namespace BlackJack_solid.Nucleo.Interfaces
     {
         string NombreReglas { get; }
         bool ValidarApuesta(double monto);
-        int ValorCarta(string cara);       
+        int ValorCarta(string cara);
         int MaximoPuntos { get; }
+        int CalcularPuntos(IEnumerable<string> cartas);
+        bool EsManoValida(IEnumerable<string> cartas);
     }
 }

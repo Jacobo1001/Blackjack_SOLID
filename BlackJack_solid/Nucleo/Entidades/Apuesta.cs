@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace BlackJack_solid.Nucleo.Entidades
 {
-    public sealed class Apuesta : IApuesta
+    public class Apuesta : IApuesta
     {
-        private readonly bool _activa = true;
+        private bool _activa = true;
         public IJugador Jugador { get; }
         public double Monto { get; }
         public DateTime Fecha { get; }
@@ -36,7 +36,8 @@ namespace BlackJack_solid.Nucleo.Entidades
         // Método para cerrar la apuesta (devuelve una nueva instancia con el estado actualizado)
         public Apuesta Cerrar()
         {
-            return new Apuesta(Jugador, Monto, Fecha) { _activa = false };
+            _activa = false;
+            return this;
         }
 
         // Función pura para registrar una apuesta (devuelve una nueva lista con la apuesta agregada)

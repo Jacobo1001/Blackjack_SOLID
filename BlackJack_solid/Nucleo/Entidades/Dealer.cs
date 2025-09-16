@@ -7,7 +7,7 @@ using BlackJack_solid.Nucleo.Interfaces;
 
 namespace BlackJack_solid.Blackjack.Servicios
 {
-    public sealed class Dealer : IDealer
+    public class Dealer : IDealer
     {
         private readonly IReglasJuego _reglas;
         private readonly Random _rng = new();
@@ -96,17 +96,7 @@ namespace BlackJack_solid.Blackjack.Servicios
             _mazo = CrearMazoBarajado();
         }
 
-        public void RepartirElementos()
-        {
-            ValidarRondaActiva();
-
-            for (int i = 0; i < 2; i++)
-            {
-                foreach (var j in _manosJugadores.Keys)
-                    _manosJugadores[j].Agregar(Robar());
-                _manoDealer.Agregar(Robar());
-            }
-        }
+        
 
         public void FinalizarRonda()
         {

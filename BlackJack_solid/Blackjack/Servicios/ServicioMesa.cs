@@ -53,6 +53,22 @@ namespace BlackJack_solid.Blackjack.Servicios
             return mesa;
         }
 
+        public IMesa MesaCerrada(IMesa mesa)
+        {
+            if (mesa is MesaSimple m)
+            {
+                m.Cerrar();
+                return m;
+            }
+            return mesa;
+        }
+
+        public IMesa RondaFinalizada(IMesa mesa)
+        {
+            // Para esta implementación simple, una ronda finalizada deja la mesa ABIERTA
+            return mesa;
+        }
+
         // Función pura para cerrar una mesa
         public void CerrarMesa(IMesa mesa)
         {

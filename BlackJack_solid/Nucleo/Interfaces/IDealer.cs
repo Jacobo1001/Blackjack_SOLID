@@ -8,9 +8,9 @@ namespace BlackJack_solid.Nucleo.Interfaces
 {
     public interface IDealer
     {
-        IDealer IniciarRonda();
-        IDealer FinalizarRonda();
-        IDealer RepartirElementos();
+        void IniciarRonda();
+        void FinalizarRonda();
+        void RepartirElementos();
         bool ValidarJugada(string jugada);
     }
 }
