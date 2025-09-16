@@ -8,7 +8,7 @@ namespace BlackJack_solid.Nucleo.Controladores
     public interface IGameController
     {
         void InicializarJuego();
-        void JugarMano();
+        IGameController JugarMano();
         void MostrarEstadisticas();
         bool PuedeJugar();
         double ObtenerSaldoJugador();
@@ -50,7 +50,7 @@ namespace BlackJack_solid.Nucleo.Controladores
             }
         }
 
-        public void JugarMano()
+        public IGameController JugarMano()
         {
             if (!PuedeJugar())
             {
@@ -84,8 +84,13 @@ namespace BlackJack_solid.Nucleo.Controladores
             if (CalcularPuntos(manoJugador) == 21)
             {
                 Console.WriteLine("🎉 ¡BLACKJACK! ¡Ganaste!");
-                FinalizarMano("Gana (Blackjack)", apuesta * 1.5);
-                return;
+                return new GameController(
+                    _reglas,
+                    _servicioMesa,
+                    _servicioApuestas,
+                    _dealer, 
+                    FinalizarMano("Gana (Blackjack)", apuesta * 1.5)
+                );
             }
 
             // Turno del jugador
@@ -107,8 +112,13 @@ namespace BlackJack_solid.Nucleo.Controladores
                         if (CalcularPuntos(manoJugador) > 21)
                         {
                             Console.WriteLine("💥 ¡Te pasaste! Pierdes la apuesta.");
-                            FinalizarMano("Pierde (se pasa)", 0);
-                            return;
+                            return new GameController(
+                                _reglas,
+                                _servicioMesa,
+                                _servicioApuestas,
+                                _dealer, 
+                                FinalizarMano("Pierde (se pasa)", 0)
+                            );
                         }
                         break;
                     case "2":
@@ -156,7 +166,13 @@ namespace BlackJack_solid.Nucleo.Controladores
                 ganancia = apuesta; // Devuelve la apuesta
             }
 
-            FinalizarMano(resultado, ganancia);
+            return new GameController(
+                _reglas,
+                _servicioMesa,
+                _servicioApuestas,
+                _dealer, 
+                FinalizarMano(resultado, ganancia)
+            );
         }
 
         public void MostrarEstadisticas()
@@ -211,23 +227,26 @@ namespace BlackJack_solid.Nucleo.Controladores
             }
         }
 
-        private void FinalizarMano(string resultado, double ganancia)
+        private IJugador FinalizarMano(string resultado, double ganancia)
         {
             Console.WriteLine($"\n🎯 Resultado: {resultado}");
 
+            IJugador jugador;
             if (ganancia > 0)
             {
                 Console.WriteLine($"💰 Ganaste: ${ganancia}");
                 // Actualizar saldo del jugador
-                var nuevoJugador = _jugador.ActualizarSaldo(ganancia);
+                jugador = _jugador.ActualizarSaldo(ganancia);
                 // En una implementación real, esto se manejaría a través de un servicio
             }
             else
             {
+                jugador = _jugador;
                 Console.WriteLine("💸 Perdiste tu apuesta.");
             }
 
-            Console.WriteLine($"💵 Nuevo saldo: ${_jugador.ObtenerSaldo()}");
+            Console.WriteLine($"💵 Nuevo saldo: ${jugador.ObtenerSaldo()}");
+            return jugador;
         }
 
         private string MostrarCartas(Mano mano)
