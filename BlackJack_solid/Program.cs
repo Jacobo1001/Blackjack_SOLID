@@ -10,11 +10,11 @@ namespace BlackJack_solid
 
         static void Main(string[] args)
         {
-            Console.WriteLine("=== 🃏 BLACKJACK INTERACTIVO ===");
+            Console.WriteLine("===BLACKJACK INTERACTIVO ===");
             Console.WriteLine("¡Bienvenido al casino!");
             
             // Usar Factory para crear dependencias (DIP)
-            var factory = new GameFactory();
+            var factory = new JuegoFabrica();
             _gameController = factory.CrearGameController();
             
             InicializarJuego();
@@ -38,7 +38,7 @@ namespace BlackJack_solid
                         continuarJugando = false;
                         break;
                     default:
-                        Console.WriteLine("❌ Opción no válida. Intenta de nuevo.");
+                        Console.WriteLine("Opción no válida. Intenta de nuevo.");
                         break;
                 }
             }
@@ -49,14 +49,14 @@ namespace BlackJack_solid
         private static void InicializarJuego()
         {
             _gameController.InicializarJuego();
-            Console.WriteLine($"\n📋 Reglas: Blackjack estándar");
-            Console.WriteLine($"🎯 Objetivo: Acercarte a 21 sin pasarte. El dealer debe pedir hasta 17.");
-            Console.WriteLine($"✅ Mesa lista para jugar!");
+            Console.WriteLine($"\nReglas: Blackjack estándar");
+            Console.WriteLine($"Objetivo: Acercarte a 21 sin pasarte. El dealer debe pedir hasta 17.");
+            Console.WriteLine($"Mesa lista para jugar!");
         }
 
         private static void MostrarMenu()
         {
-            Console.WriteLine($"\n💰 Tu saldo actual: ${_gameController.ObtenerSaldoJugador()}");
+            Console.WriteLine($"\nTu saldo actual: ${_gameController.ObtenerSaldoJugador()}");
             Console.WriteLine("\n¿Qué quieres hacer?");
             Console.WriteLine("1. Jugar una mano");
             Console.WriteLine("2. Ver estadísticas");
@@ -71,7 +71,7 @@ namespace BlackJack_solid
             }
             catch (InvalidOperationException ex)
             {
-                Console.WriteLine($"❌ {ex.Message}");
+                Console.WriteLine($"{ex.Message}");
             }
         }
 
@@ -84,11 +84,11 @@ namespace BlackJack_solid
         {
             if (!_gameController.PuedeJugar())
             {
-                Console.WriteLine("\n💸 ¡Se acabó tu dinero! ¡Gracias por jugar!");
+                Console.WriteLine("\n¡Se acabó tu dinero! ¡Gracias por jugar!");
             }
             else
             {
-                Console.WriteLine($"\n👋 ¡Gracias por jugar! Tu saldo final: ${_gameController.ObtenerSaldoJugador()}");
+                Console.WriteLine($"\n¡Gracias por jugar! Tu saldo final: ${_gameController.ObtenerSaldoJugador()}");
             }
         }
     }

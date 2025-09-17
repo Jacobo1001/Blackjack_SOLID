@@ -16,7 +16,7 @@ namespace BlackJack_solid.Nucleo.Factories
         IDealer CrearDealer(IReglasJuego reglas);
     }
 
-    public sealed class GameFactory : IGameFactory
+    public sealed class JuegoFabrica : IGameFactory
     {
         public IGameController CrearGameController()
         {

@@ -33,5 +33,16 @@ namespace BlackJack_solid.Nucleo.Entidades
             return new Jugador(Id, Nombre, Saldo + monto);
         }
         // Este bloque es funcional porque devuelve una nueva instancia del jugador con el saldo actualizado, en lugar de modificar el estado interno.
+
+        // Sobrescribir Equals y GetHashCode para comparar por Id
+        public override bool Equals(object? obj)
+        {
+            return obj is Jugador other && this.Id == other.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 }

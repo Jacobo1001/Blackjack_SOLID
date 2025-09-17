@@ -74,5 +74,12 @@ namespace BlackJack_solid.Blackjack.Servicios
                     }
                 );
         } */
+
+        // Devuelve el monto de la última apuesta activa de un jugador
+        public double ObtenerUltimaApuestaMonto(IJugador jugador)
+        {
+            var ultima = _apuestas.LastOrDefault(a => a.ObtenerJugador().ObtenerId() == jugador.ObtenerId());
+            return ultima?.ObtenerMonto() ?? 0;
+        }
     }
 }
