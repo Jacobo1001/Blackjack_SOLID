@@ -6,8 +6,10 @@ using BlackJack_solid.Nucleo.Interfaces;
 
 namespace BlackJack_solid.Nucleo.Factories
 {
+    // Interfaz para la fábrica de componentes del juego
     public interface IGameFactory
     {
+        // Crea el controlador principal del juego y los componentes necesarios para su funcionamiento
         IGameController CrearGameController();
         IJugador CrearJugador(int id, string nombre, double saldo);
         IReglasJuego CrearReglasBlackjack();
@@ -16,8 +18,10 @@ namespace BlackJack_solid.Nucleo.Factories
         IDealer CrearDealer(IReglasJuego reglas);
     }
 
+    // Implementación concreta de la fábrica 
     public sealed class JuegoFabrica : IGameFactory
     {
+        // Crea e inicializa el controlador principal del juego
         public IGameController CrearGameController()
         {
             var reglas = CrearReglasBlackjack();

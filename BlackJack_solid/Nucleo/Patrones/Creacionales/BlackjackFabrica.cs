@@ -5,11 +5,9 @@ using BlackJack_solid.Blackjack.Servicios;
 
 namespace BlackJack_solid.Nucleo.Patrones.Creacionales
 {
-    /// <summary>
-    /// FACTORY METHOD PATTERN
-    /// Define la interfaz para crear objetos del juego sin especificar sus clases concretas.
-    /// Permite que las subclases decidan qué clase instanciar.
-    /// </summary>
+    // FACTORY METHOD PATTERN
+    // Define la interfaz para crear objetos del juego sin especificar sus clases concretas.
+    // Permite que las subclases decidan qué clase instanciar.
     public interface IBlackjackFactory
     {
         IJugador CrearJugador(int id, string nombre, double saldo);
@@ -20,10 +18,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         Mano CrearMano();
     }
 
-    /// <summary>
-    /// FACTORY METHOD PATTERN - Implementación Estándar
-    /// Crea objetos básicos del juego Blackjack con configuración estándar.
-    /// </summary>
+    // FACTORY METHOD PATTERN - Implementación Estándar
+    // Crea objetos básicos del juego Blackjack con configuración estándar.
     public sealed class BlackjackFactoryEstandar : IBlackjackFactory
     {
         public IJugador CrearJugador(int id, string nombre, double saldo)

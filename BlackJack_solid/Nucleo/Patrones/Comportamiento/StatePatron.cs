@@ -5,15 +5,12 @@ using System.Collections.Generic;
 
 namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 {
-    /// <summary>
-    /// STATE PATTERN
-    /// Permite que un objeto altere su comportamiento cuando su estado interno cambia.
-    /// En Blackjack, permite manejar los diferentes estados de una ronda de juego.
-    /// </summary>
+    // STATE PATTERN
+    // Permite que un objeto altere su comportamiento cuando su estado interno cambia.
+    // En Blackjack, permite manejar los diferentes estados de una ronda de juego.
 
-    /// <summary>
-    /// STATE PATTERN - Estados posibles de una ronda de Blackjack
-    /// </summary>
+    //Estados posibles de una ronda de Blackjack
+
     public enum EstadoRonda
     {
         EsperandoApuestas,    // Los jugadores pueden hacer apuestas
@@ -24,65 +21,32 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         Finalizada             // La ronda ha terminado
     }
 
-    /// <summary>
-    /// STATE PATTERN - Interfaz para los estados de la ronda
-    /// Define las operaciones que cada estado puede realizar.
-    /// </summary>
+
     public interface IEstadoRonda
     {
-        /// <summary>
-        /// STATE PATTERN: Obtener el estado actual
-        /// </summary>
+
         EstadoRonda ObtenerEstado();
 
-        /// <summary>
-        /// STATE PATTERN: Procesar una acción en el estado actual
-        /// </summary>
         void ProcesarAccion(IContextoRonda contexto, string accion, object? parametros = null);
 
-        /// <summary>
-        /// STATE PATTERN: Verificar si una acción es válida en el estado actual
-        /// </summary>
         bool EsAccionValida(string accion);
 
-        /// <summary>
-        /// STATE PATTERN: Obtener las acciones disponibles en el estado actual
-        /// </summary>
         IEnumerable<string> ObtenerAccionesDisponibles();
 
-        /// <summary>
-        /// STATE PATTERN: Obtener descripción del estado
-        /// </summary>
+
         string ObtenerDescripcion();
     }
 
-    /// <summary>
-    /// STATE PATTERN - Contexto que mantiene el estado actual
-    /// </summary>
+
     public interface IContextoRonda
     {
-        /// <summary>
-        /// STATE PATTERN: Cambiar el estado actual
-        /// </summary>
         void CambiarEstado(IEstadoRonda nuevoEstado);
-
-        /// <summary>
-        /// STATE PATTERN: Obtener el estado actual
-        /// </summary>
         IEstadoRonda ObtenerEstadoActual();
-
-        /// <summary>
-        /// STATE PATTERN: Obtener información de la ronda
-        /// </summary>
         Ronda ObtenerRonda();
         IDealer ObtenerDealer();
         IEnumerable<IJugador> ObtenerJugadores();
     }
 
-    /// <summary>
-    /// STATE PATTERN - Estado: Esperando Apuestas
-    /// Los jugadores pueden hacer apuestas antes de que comience la ronda.
-    /// </summary>
     public sealed class EstadoEsperandoApuestas : IEstadoRonda
     {
         public EstadoRonda ObtenerEstado() => EstadoRonda.EsperandoApuestas;
@@ -127,10 +91,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         public string ObtenerDescripcion() => "Esperando que los jugadores hagan sus apuestas";
     }
 
-    /// <summary>
-    /// STATE PATTERN - Estado: Repartiendo Cartas
-    /// Se reparten las cartas iniciales a jugadores y dealer.
-    /// </summary>
     public sealed class EstadoRepartiendoCartas : IEstadoRonda
     {
         public EstadoRonda ObtenerEstado() => EstadoRonda.RepartiendoCartas;
@@ -142,9 +102,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             switch (accion.ToLower())
             {
                 case "repartir_cartas":
-                    Console.WriteLine("🃏 Repartiendo cartas iniciales...");
-                    // Lógica para repartir cartas
-                    Console.WriteLine("✅ Cartas repartidas - cambiando a estado 'Turno Jugador'");
+                    Console.WriteLine("Repartiendo cartas iniciales...");
+                    Console.WriteLine("Cartas repartidas - cambiando a estado 'Turno Jugador'");
                     contexto.CambiarEstado(new EstadoTurnoJugador());
                     break;
 
@@ -173,10 +132,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         public string ObtenerDescripcion() => "Repartiendo cartas iniciales a jugadores y dealer";
     }
 
-    /// <summary>
-    /// STATE PATTERN - Estado: Turno del Jugador
-    /// El jugador puede pedir cartas, plantarse, doblar o rendirse.
-    /// </summary>
     public sealed class EstadoTurnoJugador : IEstadoRonda
     {
         public EstadoRonda ObtenerEstado() => EstadoRonda.TurnoJugador;
@@ -189,7 +144,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             {
                 case "pedir_carta":
                     Console.WriteLine("🃏 Jugador pide una carta...");
-                    // Lógica para dar carta al jugador
                     Console.WriteLine("✅ Carta entregada al jugador.");
                     break;
 
@@ -200,7 +154,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 
                 case "doblar_apuesta":
                     Console.WriteLine("💰 Jugador dobla su apuesta y recibe una carta final.");
-                    // Lógica para doblar apuesta
                     Console.WriteLine("✅ Apuesta doblada - cambiando a estado 'Turno Dealer'");
                     contexto.CambiarEstado(new EstadoTurnoDealer());
                     break;
@@ -240,10 +193,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         public string ObtenerDescripcion() => "Es el turno del jugador para tomar decisiones";
     }
 
-    /// <summary>
-    /// STATE PATTERN - Estado: Turno del Dealer
-    /// El dealer juega su mano siguiendo las reglas del casino.
-    /// </summary>
     public sealed class EstadoTurnoDealer : IEstadoRonda
     {
         public EstadoRonda ObtenerEstado() => EstadoRonda.TurnoDealer;
@@ -256,7 +205,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             {
                 case "dealer_pide_carta":
                     Console.WriteLine("🤖 Dealer pide una carta...");
-                    // Lógica para dar carta al dealer
                     Console.WriteLine("✅ Carta entregada al dealer.");
                     break;
 
@@ -295,10 +243,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         public string ObtenerDescripcion() => "Es el turno del dealer para jugar su mano";
     }
 
-    /// <summary>
-    /// STATE PATTERN - Estado: Calculando Resultado
-    /// Se calculan los resultados y se determinan los ganadores.
-    /// </summary>
     public sealed class EstadoCalculandoResultado : IEstadoRonda
     {
         public EstadoRonda ObtenerEstado() => EstadoRonda.CalculandoResultado;
@@ -311,14 +255,12 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             {
                 case "calcular_resultado":
                     Console.WriteLine("📊 Calculando resultados de la ronda...");
-                    // Lógica para calcular resultados
                     Console.WriteLine("✅ Resultados calculados - cambiando a estado 'Finalizada'");
                     contexto.CambiarEstado(new EstadoFinalizada());
                     break;
 
                 case "pagar_ganancias":
                     Console.WriteLine("💰 Pagando ganancias a los jugadores...");
-                    // Lógica para pagar ganancias
                     Console.WriteLine("✅ Ganancias pagadas.");
                     break;
 
@@ -341,11 +283,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 
         public string ObtenerDescripcion() => "Calculando resultados y determinando ganadores";
     }
-
-    /// <summary>
-    /// STATE PATTERN - Estado: Finalizada
-    /// La ronda ha terminado y no se pueden realizar más acciones.
-    /// </summary>
     public sealed class EstadoFinalizada : IEstadoRonda
     {
         public EstadoRonda ObtenerEstado() => EstadoRonda.Finalizada;
@@ -363,7 +300,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 
                 case "cerrar_mesa":
                     Console.WriteLine("🚪 Cerrando mesa.");
-                    // Lógica para cerrar la mesa
                     break;
 
                 default:
@@ -386,10 +322,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         public string ObtenerDescripcion() => "La ronda ha terminado";
     }
 
-    /// <summary>
-    /// STATE PATTERN - Implementación concreta del contexto
-    /// Mantiene el estado actual y delega las operaciones al estado correspondiente.
-    /// </summary>
     public sealed class ContextoRonda : IContextoRonda
     {
         private IEstadoRonda _estadoActual;
@@ -403,14 +335,10 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             _dealer = dealer ?? throw new ArgumentNullException(nameof(dealer));
             _jugadores = new List<IJugador>(jugadores ?? throw new ArgumentNullException(nameof(jugadores)));
             
-            // STATE PATTERN: Inicializar con el estado inicial
             _estadoActual = new EstadoEsperandoApuestas();
             Console.WriteLine($"STATE PATTERN: ContextoRonda inicializado en estado '{_estadoActual.ObtenerDescripcion()}'");
         }
 
-        /// <summary>
-        /// STATE PATTERN: Cambiar el estado actual
-        /// </summary>
         public void CambiarEstado(IEstadoRonda nuevoEstado)
         {
             if (nuevoEstado == null) throw new ArgumentNullException(nameof(nuevoEstado));
@@ -421,14 +349,9 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"STATE PATTERN: Estado cambiado de '{estadoAnterior}' a '{nuevoEstado.ObtenerEstado()}'");
         }
 
-        /// <summary>
-        /// STATE PATTERN: Obtener el estado actual
-        /// </summary>
         public IEstadoRonda ObtenerEstadoActual() => _estadoActual;
 
-        /// <summary>
-        /// STATE PATTERN: Procesar una acción en el estado actual
-        /// </summary>
+
         public void ProcesarAccion(string accion, object? parametros = null)
         {
             Console.WriteLine($"STATE PATTERN: Procesando acción '{accion}' en estado '{_estadoActual.ObtenerEstado()}'");
@@ -443,16 +366,12 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             _estadoActual.ProcesarAccion(this, accion, parametros);
         }
 
-        /// <summary>
-        /// STATE PATTERN: Obtener información de la ronda
-        /// </summary>
+
         public Ronda ObtenerRonda() => _ronda;
         public IDealer ObtenerDealer() => _dealer;
         public IEnumerable<IJugador> ObtenerJugadores() => _jugadores.AsReadOnly();
 
-        /// <summary>
-        /// STATE PATTERN: Obtener información del estado actual
-        /// </summary>
+
         public string ObtenerInformacionEstado()
         {
             return $"Estado actual: {_estadoActual.ObtenerEstado()}\n" +

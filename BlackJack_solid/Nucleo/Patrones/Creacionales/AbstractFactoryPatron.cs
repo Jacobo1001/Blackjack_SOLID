@@ -4,11 +4,9 @@ using BlackJack_solid.Nucleo.Interfaces;
 
 namespace BlackJack_solid.Nucleo.Patrones.Creacionales
 {
-    /// <summary>
-    /// ABSTRACT FACTORY PATTERN
-    /// Define la interfaz para crear familias de objetos relacionados sin especificar sus clases concretas.
-    /// Cada familia representa un conjunto completo de reglas coherentes para el juego.
-    /// </summary>
+    // ABSTRACT FACTORY PATTERN
+    // Define la interfaz para crear familias de objetos relacionados sin especificar sus clases concretas.
+    // Cada familia representa un conjunto completo de reglas coherentes para el juego.
     public interface IAbstractFactoryReglas
     {
         IReglasJuego CrearReglasJuego();
@@ -17,10 +15,9 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         string ObtenerNombreVariante();
     }
 
-    /// <summary>
-    /// ABSTRACT FACTORY PATTERN - Estrategia de Dealer
-    /// Define cómo debe comportarse el dealer según las reglas específicas.
-    /// </summary>
+    // ABSTRACT FACTORY PATTERN - Estrategia de Dealer
+    // Define cómo debe comportarse el dealer según las reglas específicas.
+
     public interface IEstrategiaDealer
     {
         bool DebePedirCarta(int puntosActuales);
@@ -28,10 +25,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         string ObtenerNombreEstrategia();
     }
 
-    /// <summary>
-    /// ABSTRACT FACTORY PATTERN - Política de Apuestas
-    /// Define los límites y reglas de apuestas según la variante del juego.
-    /// </summary>
+    // ABSTRACT FACTORY PATTERN - Política de Apuestas
+    // Define los límites y reglas de apuestas según la variante del juego.
     public interface IPoliticaApuestas
     {
         double ApuestaMinima();
@@ -41,37 +36,30 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         string ObtenerNombrePolitica();
     }
 
-    /// <summary>
-    /// ABSTRACT FACTORY PATTERN - Factory para Reglas Clásicas
-    /// Crea un conjunto completo de reglas para Blackjack clásico/estándar.
-    /// </summary>
+    // ABSTRACT FACTORY PATTERN - Factory para Reglas Clásicas
+
     public sealed class FabricaReglasClasicas : IAbstractFactoryReglas
     {
         public IReglasJuego CrearReglasJuego()
         {
-            // Abstract Factory: Crear reglas clásicas
             return new ReglasBlackjackClasicas();
         }
 
         public IEstrategiaDealer CrearEstrategiaDealer()
         {
-            // Abstract Factory: Crear estrategia clásica (dealer se planta en 17)
             return new EstrategiaDealerClasica();
         }
 
         public IPoliticaApuestas CrearPoliticaApuestas()
         {
-            // Abstract Factory: Crear política clásica
             return new PoliticaApuestasClasica();
         }
 
         public string ObtenerNombreVariante() => "Blackjack Clásico";
     }
 
-    /// <summary>
-    /// ABSTRACT FACTORY PATTERN - Factory para Reglas Vegas
-    /// Crea un conjunto completo de reglas para Blackjack estilo Las Vegas.
-    /// </summary>
+    // ABSTRACT FACTORY PATTERN - Factory para Reglas Vegas
+    // Crea un conjunto completo de reglas para Blackjack estilo Las Vegas.
     public sealed class FabricaReglasVegas : IAbstractFactoryReglas
     {
         public IReglasJuego CrearReglasJuego()
@@ -95,10 +83,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         public string ObtenerNombreVariante() => "Blackjack Vegas";
     }
 
-    /// <summary>
-    /// ABSTRACT FACTORY PATTERN - Factory para Reglas Europeas
-    /// Crea un conjunto completo de reglas para Blackjack estilo europeo.
-    /// </summary>
+    // ABSTRACT FACTORY PATTERN - Factory para Reglas Europeas
+    // Crea un conjunto completo de reglas para Blackjack estilo europeo.
     public sealed class FabricaReglasEuropeas : IAbstractFactoryReglas
     {
         public IReglasJuego CrearReglasJuego()
@@ -122,9 +108,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         public string ObtenerNombreVariante() => "Blackjack Europeo";
     }
 
-    /// <summary>
-    /// ABSTRACT FACTORY PATTERN - Implementaciones de Reglas
-    /// </summary>
+    // ABSTRACT FACTORY PATTERN - Implementaciones de Reglas
     public sealed class ReglasBlackjackClasicas : IReglasJuego
     {
         public string NombreReglas => "Blackjack Clásico";
@@ -156,7 +140,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         public string NombreReglas => "Blackjack Vegas";
         public int MaximoPuntos => 21;
 
-        public bool ValidarApuesta(double monto) => monto >= 5 && monto <= 10000; // Límites más altos
+        public bool ValidarApuesta(double monto) => monto >= 5 && monto <= 10000; 
         public int ValorCarta(string cara) => cara switch
         {
             "A" => 11,
@@ -203,9 +187,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         public bool EsManoValida(IEnumerable<string> cartas) => CalcularPuntos(cartas) <= MaximoPuntos;
     }
 
-    /// <summary>
-    /// ABSTRACT FACTORY PATTERN - Implementaciones de Estrategias de Dealer
-    /// </summary>
+    // ABSTRACT FACTORY PATTERN - Implementaciones de Estrategias de Dealer
     public sealed class EstrategiaDealerClasica : IEstrategiaDealer
     {
         public bool DebePedirCarta(int puntosActuales) => puntosActuales < 17;
@@ -227,9 +209,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         public string ObtenerNombreEstrategia() => "Europea (17, sin carta oculta)";
     }
 
-    /// <summary>
-    /// ABSTRACT FACTORY PATTERN - Implementaciones de Políticas de Apuestas
-    /// </summary>
+    //Implementaciones de politicas de Apuestas
+  
     public sealed class PoliticaApuestasClasica : IPoliticaApuestas
     {
         public double ApuestaMinima() => 1.0;

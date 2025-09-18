@@ -17,7 +17,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         string ObtenerDescripcion();
     }
 
-    // Interfaz para comandos que requieren parámetros, hacemos que los comandos sean genéricos y reutilizables
     public interface IComandoConParametros<T> : IComando
     {
         void EstablecerParametros(T parametros);
@@ -37,13 +36,11 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             _jugador = jugador ?? throw new ArgumentNullException(nameof(jugador));
         }
 
-        // Establece los parámetros necesarios para ejecutar el comando
         public void EstablecerParametros(ParametrosPedirCarta parametros)
         {
             _parametros = parametros ?? throw new ArgumentNullException(nameof(parametros));
         }
 
-        // Ejecuta el comando de pedir carta
         public void Ejecutar()
         {
             if (_parametros == null)
@@ -65,19 +62,16 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"Carta removida: {(_cartaEntregada != null ? ObtenerNombreCara(_cartaEntregada.Cara) : "?")} de {_cartaEntregada?.Palo}");
         }
 
-        // Indica si el comando se puede deshacer
         public bool SePuedeDeshacer()
         {
             return _cartaEntregada != null;
         }
 
-        // Proporciona una descripción del comando
         public string ObtenerDescripcion()
         {
             return $"Pedir carta para {_jugador.ObtenerNombre()}";
         }
 
-        // Método auxiliar para mostrar la cara de la carta de forma amigable
         private static string ObtenerNombreCara(Cara cara)
         {
             return cara switch
@@ -109,16 +103,12 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         private readonly IDealer _dealer;
         private bool _ejecutado = false;
 
-        /// <summary>
-        /// Inicializa el comando con el jugador y el dealer.
-        /// </summary>
         public ComandoPlantarse(IJugador jugador, IDealer dealer)
         {
             _jugador = jugador ?? throw new ArgumentNullException(nameof(jugador));
             _dealer = dealer ?? throw new ArgumentNullException(nameof(dealer));
         }
 
-        /// <inheritdoc/>
         public void Ejecutar()
         {
             Console.WriteLine($"COMMAND PATTERN: Ejecutando comando 'Plantarse' para {_jugador.ObtenerNombre()}");
@@ -126,28 +116,23 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"{_jugador.ObtenerNombre()} se plantó");
         }
 
-        /// <inheritdoc/>
         public void Deshacer()
         {
             throw new InvalidOperationException("No se puede deshacer 'Plantarse'");
         }
 
-        /// <inheritdoc/>
         public bool SePuedeDeshacer()
         {
             return false;
         }
 
-        /// <inheritdoc/>
         public string ObtenerDescripcion()
         {
             return $"Plantarse para {_jugador.ObtenerNombre()}";
         }
     }
 
-    /// <summary>
-    /// Comando para doblar la apuesta.
-    /// </summary>
+    // Comando para doblar la apuesta.
     public sealed class ComandoDoblarApuesta : IComandoConParametros<ParametrosDoblarApuesta>
     {
         private readonly IJugador _jugador;
@@ -155,22 +140,17 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         private ParametrosDoblarApuesta? _parametros;
         private double _apuestaOriginal;
 
-        /// <summary>
-        /// Inicializa el comando con el jugador y el dealer.
-        /// </summary>
         public ComandoDoblarApuesta(IJugador jugador, IDealer dealer)
         {
             _jugador = jugador ?? throw new ArgumentNullException(nameof(jugador));
             _dealer = dealer ?? throw new ArgumentNullException(nameof(dealer));
         }
 
-        /// <inheritdoc/>
         public void EstablecerParametros(ParametrosDoblarApuesta parametros)
         {
             _parametros = parametros ?? throw new ArgumentNullException(nameof(parametros));
         }
 
-        /// <inheritdoc/>
         public void Ejecutar()
         {
             if (_parametros == null)
@@ -181,7 +161,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"Apuesta doblada de ${_apuestaOriginal} a ${nuevaApuesta}");
         }
 
-        /// <inheritdoc/>
         public void Deshacer()
         {
             if (!SePuedeDeshacer())
@@ -190,38 +169,30 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"↩️ Apuesta restaurada a ${_apuestaOriginal}");
         }
 
-        /// <inheritdoc/>
         public bool SePuedeDeshacer()
         {
             return _parametros != null && _apuestaOriginal > 0;
         }
 
-        /// <inheritdoc/>
         public string ObtenerDescripcion()
         {
             return $"Doblar apuesta para {_jugador.ObtenerNombre()}";
         }
     }
 
-    /// <summary>
-    /// Comando para rendirse.
-    /// </summary>
+    // Comando para rendirse.
     public sealed class ComandoRendirse : IComando
     {
         private readonly IJugador _jugador;
         private readonly IDealer _dealer;
         private bool _ejecutado = false;
 
-        /// <summary>
-        /// Inicializa el comando con el jugador y el dealer.
-        /// </summary>
         public ComandoRendirse(IJugador jugador, IDealer dealer)
         {
             _jugador = jugador ?? throw new ArgumentNullException(nameof(jugador));
             _dealer = dealer ?? throw new ArgumentNullException(nameof(dealer));
         }
 
-        /// <inheritdoc/>
         public void Ejecutar()
         {
             Console.WriteLine($"COMMAND PATTERN: Ejecutando comando 'Rendirse' para {_jugador.ObtenerNombre()}");
@@ -229,51 +200,40 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"{_jugador.ObtenerNombre()} se rindió");
         }
 
-        /// <inheritdoc/>
         public void Deshacer()
         {
             throw new InvalidOperationException("No se puede deshacer 'Rendirse'");
         }
 
-        /// <inheritdoc/>
         public bool SePuedeDeshacer()
         {
             return false;
         }
 
-        /// <inheritdoc/>
         public string ObtenerDescripcion()
         {
             return $"Rendirse para {_jugador.ObtenerNombre()}";
         }
     }
 
-    /// <summary>
-    /// Comando compuesto (macro comando) que agrupa varios comandos.
-    /// </summary>
     public sealed class ComandoCompuesto : IComando
     {
         private readonly List<IComando> _comandos = new List<IComando>();
         private readonly string _nombre;
 
-        /// <summary>
-        /// Inicializa el macro comando con un nombre descriptivo.
-        /// </summary>
+  
         public ComandoCompuesto(string nombre)
         {
             _nombre = nombre ?? throw new ArgumentNullException(nameof(nombre));
         }
 
-        /// <summary>
-        /// Agrega un comando al macro comando.
-        /// </summary>
+
         public void AgregarComando(IComando comando)
         {
             if (comando == null) throw new ArgumentNullException(nameof(comando));
             _comandos.Add(comando);
         }
 
-        /// <inheritdoc/>
         public void Ejecutar()
         {
             Console.WriteLine($"COMMAND PATTERN: Ejecutando comando compuesto '{_nombre}' con {_comandos.Count} comandos");
@@ -291,8 +251,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             }
             Console.WriteLine($"Comando compuesto '{_nombre}' ejecutado exitosamente");
         }
-
-        /// <inheritdoc/>
         public void Deshacer()
         {
             Console.WriteLine($"COMMAND PATTERN: Deshaciendo comando compuesto '{_nombre}'");
@@ -314,30 +272,24 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"Comando compuesto '{_nombre}' deshecho");
         }
 
-        /// <inheritdoc/>
         public bool SePuedeDeshacer()
         {
             return _comandos.Any(c => c.SePuedeDeshacer());
         }
-
-        /// <inheritdoc/>
         public string ObtenerDescripcion()
         {
             return $"Comando compuesto '{_nombre}' ({_comandos.Count} comandos)";
         }
     }
 
-    /// <summary>
-    /// Invocador de comandos: ejecuta, encola y deshace comandos.
-    /// </summary>
+    // Invocador de comandos: ejecuta, encola y deshace comandos.
     public sealed class InvocadorComandos
     {
         private readonly Stack<IComando> _historialComandos = new Stack<IComando>();
         private readonly Queue<IComando> _colaComandos = new Queue<IComando>();
 
-        /// <summary>
-        /// Ejecuta un comando inmediatamente y lo guarda en el historial.
-        /// </summary>
+
+        // Ejecuta un comando inmediatamente y lo guarda en el historial.
         public void EjecutarComando(IComando comando)
         {
             if (comando == null) throw new ArgumentNullException(nameof(comando));
@@ -355,9 +307,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             }
         }
 
-        /// <summary>
-        /// Encola un comando para ejecución posterior.
-        /// </summary>
+        // Encola un comando para ejecución posterior.
         public void EncolarComando(IComando comando)
         {
             if (comando == null) throw new ArgumentNullException(nameof(comando));
@@ -365,9 +315,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"COMMAND PATTERN: Comando '{comando.ObtenerDescripcion()}' encolado. Cola: {_colaComandos.Count}");
         }
 
-        /// <summary>
-        /// Ejecuta todos los comandos encolados.
-        /// </summary>
+        // Ejecuta todos los comandos encolados.
         public void EjecutarColaComandos()
         {
             Console.WriteLine($"COMMAND PATTERN: Ejecutando {_colaComandos.Count} comandos encolados");
@@ -378,9 +326,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             }
         }
 
-        /// <summary>
-        /// Deshace el último comando ejecutado si es posible.
-        /// </summary>
+        // Deshace el último comando ejecutado si es posible.
         public void DeshacerUltimoComando()
         {
             if (_historialComandos.Count == 0)
@@ -400,43 +346,32 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             }
         }
 
-        /// <summary>
-        /// Devuelve el historial de comandos ejecutados.
-        /// </summary>
+        // Devuelve el historial de comandos ejecutados.
         public IEnumerable<IComando> ObtenerHistorial()
         {
             return _historialComandos.ToArray();
         }
 
-        /// <summary>
-        /// Limpia el historial de comandos.
-        /// </summary>
+
         public void LimpiarHistorial()
         {
             _historialComandos.Clear();
             Console.WriteLine("COMMAND PATTERN: Historial de comandos limpiado");
         }
 
-        /// <summary>
-        /// Devuelve información del estado del invocador.
-        /// </summary>
         public string ObtenerInformacion()
         {
             return $"Invocador: {_historialComandos.Count} comandos en historial, {_colaComandos.Count} comandos encolados";
         }
     }
 
-    /// <summary>
-    /// Parámetros para el comando de pedir carta.
-    /// </summary>
+    // Parámetros para el comando de pedir carta.
     public sealed class ParametrosPedirCarta
     {
         public IJugador Jugador { get; }
         public DateTime Timestamp { get; }
 
-        /// <summary>
-        /// Inicializa los parámetros con el jugador.
-        /// </summary>
+        // Inicializa los parámetros con el jugador.
         public ParametrosPedirCarta(IJugador jugador)
         {
             Jugador = jugador ?? throw new ArgumentNullException(nameof(jugador));
@@ -451,7 +386,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         public IJugador Jugador { get; }
         public DateTime Timestamp { get; }
 
-        /// Inicializa los parámetros con la apuesta original y el jugador.
         public ParametrosDoblarApuesta(double apuestaOriginal, IJugador jugador)
         {
             ApuestaOriginal = apuestaOriginal;
@@ -460,22 +394,22 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// Fábrica de comandos para crear instancias de comandos de Blackjack.
+    // Fábrica de comandos para crear instancias de comandos de Blackjack.
     public static class ComandoFactory
     {
-        /// Crea un comando para pedir carta.
+        // Crea un comando para pedir carta.
         public static IComandoConParametros<ParametrosPedirCarta> CrearComandoPedirCarta(IDealer dealer, IJugador jugador)
         {
             return new ComandoPedirCarta(dealer, jugador);
         }
 
-        /// Crea un comando para plantarse.
+        // Crea un comando para plantarse.
         public static IComando CrearComandoPlantarse(IJugador jugador, IDealer dealer)
         {
             return new ComandoPlantarse(jugador, dealer);
         }
 
-        /// Comando para doblar la apuesta
+        // Comando para doblar la apuesta
         public static IComandoConParametros<ParametrosDoblarApuesta> CrearComandoDoblarApuesta(IJugador jugador, IDealer dealer)
         {
             return new ComandoDoblarApuesta(jugador, dealer);

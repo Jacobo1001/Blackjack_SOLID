@@ -4,11 +4,9 @@ using System.Collections.Concurrent;
 
 namespace BlackJack_solid.Nucleo.Patrones.Creacionales
 {
-    /// <summary>
-    /// SINGLETON PATTERN
-    /// Asegura que solo exista una instancia de GestorMesas en toda la aplicación.
-    /// Centraliza la creación y registro de todas las mesas del casino.
-    /// </summary>
+    // SINGLETON PATTERN
+    // Asegura que solo exista una instancia de GestorMesas en toda la aplicación.
+    // Centraliza la creación y registro de todas las mesas del casino.
     public sealed class GestorMesas
     {
         private static volatile GestorMesas? _instancia;
@@ -19,18 +17,14 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         private int _contadorMesas = 0;
         private int _contadorDealers = 0;
 
-        /// <summary>
-        /// SINGLETON PATTERN: Constructor privado para prevenir instanciación externa
-        /// </summary>
+        // SINGLETON PATTERN: Constructor privado para prevenir instanciación externa
         private GestorMesas()
         {
             // Singleton: Constructor privado para controlar la instanciación
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Propiedad estática que devuelve la única instancia
-        /// Implementa lazy initialization con double-checked locking para thread-safety
-        /// </summary>
+        // SINGLETON PATTERN: Propiedad estática que devuelve la única instancia
+        // Implementa lazy initialization con double-checked locking para thread-safety
         public static GestorMesas Instancia
         {
             get
@@ -50,9 +44,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
             }
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Crear nueva mesa usando Factory Method
-        /// </summary>
+        // SINGLETON PATTERN: Crear nueva mesa usando Factory Method
         public IMesa CrearMesa(IReglasJuego reglas, IBlackjackFactory factory)
         {
             var id = Interlocked.Increment(ref _contadorMesas);
@@ -64,9 +56,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
             return mesa;
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Crear nuevo dealer usando Factory Method
-        /// </summary>
+        // SINGLETON PATTERN: Crear nuevo dealer usando Factory Method
         public IDealer CrearDealer(IReglasJuego reglas, IBlackjackFactory factory)
         {
             var id = Interlocked.Increment(ref _contadorDealers);
@@ -78,34 +68,26 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
             return dealer;
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Obtener mesa por ID
-        /// </summary>
+        // SINGLETON PATTERN: Obtener mesa por ID
         public IMesa? ObtenerMesa(int id)
         {
             _mesas.TryGetValue(id, out var mesa);
             return mesa;
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Obtener todas las mesas
-        /// </summary>
+        // SINGLETON PATTERN: Obtener todas las mesas
         public IReadOnlyCollection<IMesa> ObtenerTodasLasMesas()
         {
             return _mesas.Values.ToList().AsReadOnly();
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Obtener mesas por estado
-        /// </summary>
+        // SINGLETON PATTERN: Obtener mesas por estado
         public IEnumerable<IMesa> ObtenerMesasPorEstado(string estado)
         {
             return _mesas.Values.Where(m => m.ObtenerEstado() == estado);
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Asignar dealer a mesa
-        /// </summary>
+        // SINGLETON PATTERN: Asignar dealer a mesa
         public bool AsignarDealerAMesa(int idMesa, IDealer dealer)
         {
             if (_mesas.TryGetValue(idMesa, out var mesa))
@@ -116,9 +98,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
             return false;
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Cerrar mesa
-        /// </summary>
+        // SINGLETON PATTERN: Cerrar mesa
         public bool CerrarMesa(int idMesa)
         {
             if (_mesas.TryGetValue(idMesa, out var mesa))
@@ -130,9 +110,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
             return false;
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Obtener estadísticas del gestor
-        /// </summary>
+        // SINGLETON PATTERN: Obtener estadísticas del gestor
         public EstadisticasGestor ObtenerEstadisticas()
         {
             return new EstadisticasGestor
@@ -145,9 +123,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
             };
         }
 
-        /// <summary>
-        /// SINGLETON PATTERN: Limpiar todas las mesas (para testing)
-        /// </summary>
+        // SINGLETON PATTERN: Limpiar todas las mesas (para testing)
         public void LimpiarTodasLasMesas()
         {
             _mesas.Clear();
@@ -157,9 +133,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Creacionales
         }
     }
 
-    /// <summary>
-    /// SINGLETON PATTERN - Clase para estadísticas del gestor
-    /// </summary>
+    // SINGLETON PATTERN - Clase para estadísticas del gestor
     public sealed class EstadisticasGestor
     {
         public int TotalMesas { get; set; }

@@ -6,63 +6,43 @@ using System.Collections.Generic;
 
 namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 {
-    /// <summary>
-    /// STRATEGY PATTERN
-    /// Define una familia de algoritmos, los encapsula y los hace intercambiables.
-    /// En Blackjack, permite diferentes estrategias de juego para jugadores y dealers.
-    /// </summary>
 
-    /// <summary>
-    /// STRATEGY PATTERN - Interfaz para estrategias de decisión del jugador
-    /// </summary>
+    // Define una familia de algoritmos, los encapsula y los hace intercambiables.
+    // En Blackjack, permite diferentes estrategias de juego para jugadores y dealers.
+
+    //Interfaz para estrategias de decisión del jugador
+
     public interface IEstrategiaJugador
     {
-        /// <summary>
-        /// STRATEGY PATTERN: Decidir qué acción tomar basada en la mano actual
-        /// </summary>
+        // Decidir qué acción tomar basada en la mano actual
+
         AccionJugada DecidirAccion(Mano manoJugador, Mano manoDealer, double saldoDisponible, double apuestaActual);
 
-        /// <summary>
-        /// STRATEGY PATTERN: Decidir el monto de la apuesta
-        /// </summary>
+        // Decidir el monto de la apuesta
         double DecidirApuesta(double saldoDisponible, int numeroRonda);
 
-        /// <summary>
-        /// STRATEGY PATTERN: Decidir si doblar la apuesta
-        /// </summary>
+        // Decidir si doblar la apuesta
         bool DecidirDoblar(Mano manoJugador, Mano manoDealer, double saldoDisponible);
 
-        /// <summary>
-        /// STRATEGY PATTERN: Decidir si rendirse
-        /// </summary>
+        // Decidir si rendirse
         bool DecidirRendirse(Mano manoJugador, Mano manoDealer);
 
-        /// <summary>
-        /// STRATEGY PATTERN: Obtener nombre de la estrategia
-        /// </summary>
+        // Obtener nombre de la estrategia
         string ObtenerNombre();
     }
 
-    /// <summary>
-    /// STRATEGY PATTERN - Interfaz para estrategias de decisión del dealer
-    /// </summary>
+    //Interfaz para estrategias de decisión del dealer
     public interface IEstrategiaDealer
     {
-        /// <summary>
-        /// STRATEGY PATTERN: Decidir si el dealer debe pedir otra carta
-        /// </summary>
+        // Decidir si el dealer debe pedir otra carta
         bool DebePedirCarta(Mano manoDealer, Mano manoJugador);
 
-        /// <summary>
-        /// STRATEGY PATTERN: Obtener nombre de la estrategia
-        /// </summary>
+        // Obtener nombre de la estrategia
         string ObtenerNombre();
     }
 
-    /// <summary>
-    /// STRATEGY PATTERN - Estrategia conservadora para jugadores
-    /// Juega de manera segura, evitando riesgos innecesarios.
-    /// </summary>
+    // Estrategia conservadora para jugadores
+    // Juega de manera segura, evitando riesgos innecesarios.
     public sealed class EstrategiaJugadorConservadora : IEstrategiaJugador
     {
         public AccionJugada DecidirAccion(Mano manoJugador, Mano manoDealer, double saldoDisponible, double apuestaActual)
@@ -72,7 +52,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 
             Console.WriteLine($"STRATEGY PATTERN: Estrategia Conservadora - Jugador: {puntosJugador}, Dealer: {puntosDealer}");
 
-            // STRATEGY PATTERN: Lógica conservadora
+            // Lógica conservadora
             if (puntosJugador >= 17)
             {
                 Console.WriteLine("✅ Estrategia Conservadora: Se planta en 17+");
@@ -85,7 +65,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
                 return AccionJugada.Pedir;
             }
 
-            // STRATEGY PATTERN: Entre 12-16, depende de la carta visible del dealer
+            // Entre 12-16, depende de la carta visible del dealer
             if (puntosDealer >= 7)
             {
                 Console.WriteLine("✅ Estrategia Conservadora: Dealer fuerte, pide carta");
@@ -100,7 +80,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 
         public double DecidirApuesta(double saldoDisponible, int numeroRonda)
         {
-            // STRATEGY PATTERN: Apuesta conservadora (2-5% del saldo)
+            // Apuesta conservadora (2-5% del saldo)
             var apuesta = Math.Min(saldoDisponible * 0.03, 50.0);
             Console.WriteLine($"✅ Estrategia Conservadora: Apuesta ${apuesta:F2} (3% del saldo)");
             return apuesta;
@@ -111,7 +91,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             var puntosJugador = CalcularPuntos(manoJugador);
             var puntosDealer = CalcularPuntos(manoDealer);
 
-            // STRATEGY PATTERN: Solo dobla en situaciones muy favorables
+            // Solo dobla en situaciones muy favorables
             bool doblar = (puntosJugador == 11) || 
                         (puntosJugador == 10 && puntosDealer < 10) ||
                         (puntosJugador == 9 && puntosDealer >= 3 && puntosDealer <= 6);
@@ -125,7 +105,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             var puntosJugador = CalcularPuntos(manoJugador);
             var puntosDealer = CalcularPuntos(manoDealer);
 
-            // STRATEGY PATTERN: Solo se rinde en situaciones muy desfavorables
+            // Solo se rinde en situaciones muy desfavorables
             bool rendirse = puntosJugador == 16 && puntosDealer >= 9;
 
             Console.WriteLine($"✅ Estrategia Conservadora: {(rendirse ? "Se rinde" : "No se rinde")}");
@@ -140,10 +120,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// <summary>
-    /// STRATEGY PATTERN - Estrategia agresiva para jugadores
-    /// Toma más riesgos para maximizar las ganancias.
-    /// </summary>
+    // Estrategia agresiva para jugadores
+    // Toma más riesgos para maximizar las ganancias.
     public sealed class EstrategiaJugadorAgresiva : IEstrategiaJugador
     {
         public AccionJugada DecidirAccion(Mano manoJugador, Mano manoDealer, double saldoDisponible, double apuestaActual)
@@ -153,7 +131,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 
             Console.WriteLine($"STRATEGY PATTERN: Estrategia Agresiva - Jugador: {puntosJugador}, Dealer: {puntosDealer}");
 
-            // STRATEGY PATTERN: Lógica agresiva
+            // Lógica agresiva
             if (puntosJugador >= 19)
             {
                 Console.WriteLine("✅ Estrategia Agresiva: Se planta en 19+");
@@ -166,7 +144,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
                 return AccionJugada.Pedir;
             }
 
-            // STRATEGY PATTERN: Entre 14-18, siempre pide si el dealer es fuerte
+            // Entre 14-18, siempre pide si el dealer es fuerte
             if (puntosDealer >= 6)
             {
                 Console.WriteLine("✅ Estrategia Agresiva: Dealer fuerte, pide carta");
@@ -181,7 +159,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 
         public double DecidirApuesta(double saldoDisponible, int numeroRonda)
         {
-            // STRATEGY PATTERN: Apuesta agresiva (5-10% del saldo)
+            // Apuesta agresiva (5-10% del saldo)
             var apuesta = Math.Min(saldoDisponible * 0.08, 100.0);
             Console.WriteLine($"✅ Estrategia Agresiva: Apuesta ${apuesta:F2} (8% del saldo)");
             return apuesta;
@@ -192,7 +170,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             var puntosJugador = CalcularPuntos(manoJugador);
             var puntosDealer = CalcularPuntos(manoDealer);
 
-            // STRATEGY PATTERN: Dobla en más situaciones
+            // Dobla en más situaciones
             bool doblar = (puntosJugador >= 9 && puntosJugador <= 11) ||
                          (puntosJugador == 8 && puntosDealer >= 5 && puntosDealer <= 6);
 
@@ -221,10 +199,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// <summary>
     /// STRATEGY PATTERN - Estrategia básica (matemáticamente óptima)
     /// Basada en la estrategia básica del Blackjack.
-    /// </summary>
     public sealed class EstrategiaJugadorBasica : IEstrategiaJugador
     {
         public AccionJugada DecidirAccion(Mano manoJugador, Mano manoDealer, double saldoDisponible, double apuestaActual)
@@ -307,10 +283,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// <summary>
-    /// STRATEGY PATTERN - Estrategia clásica del dealer
-    /// El dealer siempre pide carta hasta llegar a 17.
-    /// </summary>
+    // STRATEGY PATTERN - Estrategia clásica del dealer
+    // El dealer siempre pide carta hasta llegar a 17.
     public sealed class EstrategiaDealerClasico : IEstrategiaDealer
     {
         public bool DebePedirCarta(Mano manoDealer, Mano manoJugador)
@@ -333,10 +307,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// <summary>
-    /// STRATEGY PATTERN - Estrategia agresiva del dealer
-    /// El dealer pide carta hasta llegar a 18.
-    /// </summary>
+    // STRATEGY PATTERN - Estrategia agresiva del dealer
+    // El dealer pide carta hasta llegar a 18.
     public sealed class EstrategiaDealerAgresivo : IEstrategiaDealer
     {
         public bool DebePedirCarta(Mano manoDealer, Mano manoJugador)
@@ -359,9 +331,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// <summary>
-    /// STRATEGY PATTERN - Contexto que usa las estrategias
-    /// </summary>
+    // STRATEGY PATTERN - Contexto que usa las estrategias
     public sealed class ContextoJugador
     {
         private IEstrategiaJugador _estrategia;
@@ -372,18 +342,14 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"STRATEGY PATTERN: ContextoJugador inicializado con estrategia '{estrategia.ObtenerNombre()}'");
         }
 
-        /// <summary>
-        /// STRATEGY PATTERN: Cambiar la estrategia en tiempo de ejecución
-        /// </summary>
+        // STRATEGY PATTERN: Cambiar la estrategia en tiempo de ejecución
         public void CambiarEstrategia(IEstrategiaJugador nuevaEstrategia)
         {
             _estrategia = nuevaEstrategia ?? throw new ArgumentNullException(nameof(nuevaEstrategia));
             Console.WriteLine($"STRATEGY PATTERN: Estrategia cambiada a '{nuevaEstrategia.ObtenerNombre()}'");
         }
 
-        /// <summary>
-        /// STRATEGY PATTERN: Delegar las decisiones a la estrategia actual
-        /// </summary>
+        // STRATEGY PATTERN: Delegar las decisiones a la estrategia actual
         public AccionJugada DecidirAccion(Mano manoJugador, Mano manoDealer, double saldoDisponible, double apuestaActual)
         {
             return _estrategia.DecidirAccion(manoJugador, manoDealer, saldoDisponible, apuestaActual);
@@ -407,9 +373,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         public string ObtenerNombreEstrategia() => _estrategia.ObtenerNombre();
     }
 
-    /// <summary>
-    /// STRATEGY PATTERN - Contexto para el dealer
-    /// </summary>
+    // STRATEGY PATTERN - Contexto para el dealer
     public sealed class ContextoDealer
     {
         private IEstrategiaDealer _estrategia;
@@ -420,18 +384,15 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             Console.WriteLine($"STRATEGY PATTERN: ContextoDealer inicializado con estrategia '{estrategia.ObtenerNombre()}'");
         }
 
-        /// <summary>
-        /// STRATEGY PATTERN: Cambiar la estrategia del dealer
-        /// </summary>
+        // STRATEGY PATTERN: Cambiar la estrategia del dealer
         public void CambiarEstrategia(IEstrategiaDealer nuevaEstrategia)
         {
             _estrategia = nuevaEstrategia ?? throw new ArgumentNullException(nameof(nuevaEstrategia));
             Console.WriteLine($"STRATEGY PATTERN: Estrategia del dealer cambiada a '{nuevaEstrategia.ObtenerNombre()}'");
         }
 
-        /// <summary>
-        /// STRATEGY PATTERN: Delegar la decisión a la estrategia actual
-        /// </summary>
+        //Delegar la decisión a la estrategia actual
+
         public bool DebePedirCarta(Mano manoDealer, Mano manoJugador)
         {
             return _estrategia.DebePedirCarta(manoDealer, manoJugador);

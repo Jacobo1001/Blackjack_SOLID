@@ -7,16 +7,10 @@ using System.Linq;
 
 namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
 {
-    /// <summary>
-    /// OBSERVER PATTERN
-    /// Define una dependencia uno-a-muchos entre objetos, de manera que cuando un objeto cambia de estado,
-    /// todos sus dependientes son notificados y actualizados automáticamente.
-    /// En Blackjack, permite notificar eventos del juego a diferentes observadores.
-    /// </summary>
+    // Define una dependencia uno-a-muchos entre objetos, de manera que cuando un objeto cambia de estado,
+    // todos sus dependientes son notificados y actualizados automáticamente.
+    // En Blackjack, permite notificar eventos del juego a diferentes observadores.
 
-    /// <summary>
-    /// OBSERVER PATTERN - Tipos de eventos del juego
-    /// </summary>
     public enum TipoEvento
     {
         RondaIniciada,
@@ -38,9 +32,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         MesaCerrada
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Información del evento
-    /// </summary>
+
     public sealed class EventoJuego
     {
         public TipoEvento Tipo { get; }
@@ -62,48 +54,29 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Interfaz para observadores
-    /// </summary>
+
     public interface IObservadorJuego
     {
-        /// <summary>
-        /// OBSERVER PATTERN: Método llamado cuando se notifica un evento
-        /// </summary>
         void NotificarEvento(EventoJuego evento);
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Interfaz para el sujeto observable
-    /// </summary>
+
     public interface ISujetoObservable
     {
-        /// <summary>
-        /// OBSERVER PATTERN: Registrar un observador
-        /// </summary>
+
         void RegistrarObservador(IObservadorJuego observador);
 
-        /// <summary>
-        /// OBSERVER PATTERN: Desregistrar un observador
-        /// </summary>
+
         void DesregistrarObservador(IObservadorJuego observador);
 
-        /// <summary>
-        /// OBSERVER PATTERN: Notificar a todos los observadores
-        /// </summary>
+
         void NotificarObservadores(EventoJuego evento);
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Implementación del sujeto observable
-    /// </summary>
     public sealed class SujetoObservable : ISujetoObservable
     {
         private readonly List<IObservadorJuego> _observadores = new List<IObservadorJuego>();
 
-        /// <summary>
-        /// OBSERVER PATTERN: Registrar un observador
-        /// </summary>
         public void RegistrarObservador(IObservadorJuego observador)
         {
             if (observador == null) throw new ArgumentNullException(nameof(observador));
@@ -115,9 +88,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             }
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Desregistrar un observador
-        /// </summary>
+        //Desregistrar un observador
         public void DesregistrarObservador(IObservadorJuego observador)
         {
             if (observador == null) throw new ArgumentNullException(nameof(observador));
@@ -128,9 +99,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             }
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Notificar a todos los observadores
-        /// </summary>
+        //Notificar a todos los observadores
         public void NotificarObservadores(EventoJuego evento)
         {
             Console.WriteLine($"OBSERVER PATTERN: Notificando evento '{evento.Tipo}' a {_observadores.Count} observadores");
@@ -148,15 +117,11 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             }
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Obtener número de observadores registrados
-        /// </summary>
+        //Obtener número de observadores registrados
         public int ObtenerNumeroObservadores() => _observadores.Count;
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Observador para logging de eventos
-    /// </summary>
+    //Observador para logging de eventos
     public sealed class ObservadorLogger : IObservadorJuego
     {
         private readonly string _nombre;
@@ -166,59 +131,39 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             _nombre = nombre;
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Registrar evento en el log
-        /// </summary>
+
         public void NotificarEvento(EventoJuego evento)
         {
-            Console.WriteLine($"📝 [{_nombre}] {evento}");
+            Console.WriteLine($" [{_nombre}] {evento}");
         }
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Observador para estadísticas del juego
-    /// </summary>
+    //Observador para estadísticas del juego
     public sealed class ObservadorEstadisticas : IObservadorJuego
     {
         private readonly Dictionary<TipoEvento, int> _contadores = new Dictionary<TipoEvento, int>();
         private readonly List<EventoJuego> _eventos = new List<EventoJuego>();
 
-        /// <summary>
-        /// OBSERVER PATTERN: Registrar evento para estadísticas
-        /// </summary>
         public void NotificarEvento(EventoJuego evento)
         {
-            // OBSERVER PATTERN: Contar eventos por tipo
-            if (_contadores.ContainsKey(evento.Tipo))
-                _contadores[evento.Tipo]++;
-            else
-                _contadores[evento.Tipo] = 1;
-
-            // OBSERVER PATTERN: Guardar evento para análisis
+            // Usa operadores ternarios para contar eventos por tipo y guardar el evento
+            _contadores[evento.Tipo] = _contadores.ContainsKey(evento.Tipo) ? _contadores[evento.Tipo] + 1 : 1;
             _eventos.Add(evento);
-
-            Console.WriteLine($"📊 [Estadísticas] Evento registrado: {evento.Tipo} (Total: {_contadores[evento.Tipo]})");
+            Console.WriteLine($"[Estadísticas] Evento registrado: {evento.Tipo} (Total: {_contadores[evento.Tipo]})");
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Obtener estadísticas
-        /// </summary>
+        //Obtener estadísticas
         public Dictionary<TipoEvento, int> ObtenerEstadisticas()
         {
             return new Dictionary<TipoEvento, int>(_contadores);
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Obtener eventos por tipo
-        /// </summary>
+        //Obtener eventos por tipo
         public IEnumerable<EventoJuego> ObtenerEventosPorTipo(TipoEvento tipo)
         {
             return _eventos.Where(e => e.Tipo == tipo);
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Obtener resumen de estadísticas
-        /// </summary>
         public string ObtenerResumenEstadisticas()
         {
             var resumen = "📊 === RESUMEN DE ESTADÍSTICAS ===\n";
@@ -235,9 +180,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Observador para la interfaz de usuario
-    /// </summary>
+    //Observador para la interfaz de usuario
     public sealed class ObservadorUI : IObservadorJuego
     {
         private readonly string _nombre;
@@ -247,9 +190,6 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             _nombre = nombre;
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Actualizar la interfaz de usuario
-        /// </summary>
         public void NotificarEvento(EventoJuego evento)
         {
             // OBSERVER PATTERN: Actualizar UI según el tipo de evento
@@ -290,9 +230,7 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Observador para notificaciones de seguridad
-    /// </summary>
+    //Observador para notificaciones de seguridad
     public sealed class ObservadorSeguridad : IObservadorJuego
     {
         private readonly string _nombre;
@@ -302,12 +240,9 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             _nombre = nombre;
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Monitorear eventos de seguridad
-        /// </summary>
+        //Monitorear eventos de seguridad
         public void NotificarEvento(EventoJuego evento)
         {
-            // OBSERVER PATTERN: Monitorear eventos sospechosos
             switch (evento.Tipo)
             {
                 case TipoEvento.ApuestaRealizada:
@@ -334,26 +269,20 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
                     break;
 
                 default:
-                    // OBSERVER PATTERN: Eventos normales no requieren acción especial
                     break;
             }
         }
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Observador para análisis de patrones de juego
-    /// </summary>
+    //Observador para análisis de patrones de juego
     public sealed class ObservadorAnalisis : IObservadorJuego
     {
         private readonly List<EventoJuego> _eventosJugador = new List<EventoJuego>();
         private readonly List<EventoJuego> _eventosDealer = new List<EventoJuego>();
 
-        /// <summary>
-        /// OBSERVER PATTERN: Analizar patrones de juego
-        /// </summary>
+
         public void NotificarEvento(EventoJuego evento)
         {
-            // OBSERVER PATTERN: Clasificar eventos por actor
             switch (evento.Tipo)
             {
                 case TipoEvento.JugadorPidioCarta:
@@ -379,9 +308,8 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             }
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Analizar patrones del jugador
-        /// </summary>
+        //Analizar patrones del jugador
+
         private void AnalizarPatronJugador()
         {
             var cartasPedidas = _eventosJugador.Count(e => e.Tipo == TipoEvento.JugadorPidioCarta);
@@ -398,20 +326,19 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
             }
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Analizar patrones del dealer
-        /// </summary>
+        // Analiza los patrones del dealer usando los eventos registrados
         private void AnalizarPatronDealer()
         {
+            // Cuenta cuántas veces el dealer pidió carta
             var cartasPedidas = _eventosDealer.Count(e => e.Tipo == TipoEvento.DealerPidioCarta);
+            // Cuenta cuántas veces el dealer se plantó
             var vecesSePlanto = _eventosDealer.Count(e => e.Tipo == TipoEvento.DealerSePlanto);
 
-            Console.WriteLine($"🔍 [Análisis] Dealer: {cartasPedidas} cartas pedidas, {vecesSePlanto} veces se plantó");
+            // Muestra un resumen simple en consola
+            Console.WriteLine($"[Análisis] Dealer: {cartasPedidas} cartas pedidas, {vecesSePlanto} veces se plantó");
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Obtener resumen de análisis
-        /// </summary>
+        //Obtener resumen de análisis
         public string ObtenerResumenAnalisis()
         {
             return $"🔍 === ANÁLISIS DE PATRONES ===\n" +
@@ -422,54 +349,39 @@ namespace BlackJack_solid.Nucleo.Patrones.Comportamiento
         }
     }
 
-    /// <summary>
-    /// OBSERVER PATTERN - Factory para crear observadores
-    /// </summary>
+    //Factory para crear observadores
     public static class ObservadorFactory
     {
-        /// <summary>
-        /// OBSERVER PATTERN: Crear observador de logging
-        /// </summary>
+
         public static IObservadorJuego CrearLogger(string nombre = "Logger")
         {
             return new ObservadorLogger(nombre);
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Crear observador de estadísticas
-        /// </summary>
+
         public static IObservadorJuego CrearEstadisticas()
         {
             return new ObservadorEstadisticas();
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Crear observador de UI
-        /// </summary>
         public static IObservadorJuego CrearUI(string nombre = "UI")
         {
             return new ObservadorUI(nombre);
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Crear observador de seguridad
-        /// </summary>
+
         public static IObservadorJuego CrearSeguridad(string nombre = "Seguridad")
         {
             return new ObservadorSeguridad(nombre);
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Crear observador de análisis
-        /// </summary>
+
         public static IObservadorJuego CrearAnalisis()
         {
             return new ObservadorAnalisis();
         }
 
-        /// <summary>
-        /// OBSERVER PATTERN: Crear conjunto completo de observadores
-        /// </summary>
+
         public static List<IObservadorJuego> CrearConjuntoCompleto()
         {
             return new List<IObservadorJuego>
